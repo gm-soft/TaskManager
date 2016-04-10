@@ -8,4 +8,21 @@
     <string name="edit_task">Редактировать</string>
     <string name="action_about">О программе</string>
     <string name="action_only_undone">Незавершенные задачи</string>
+    <string name="action_show_all">Отобразить все</string>
+    <string name="edit_activity_create_desc">Создайте новую задачу</string>
+    <string name="edit_activity_update_task">Внесите изменения в текущую задачу</string>
+    <string name="edit_title_hint">Заголовок задачи</string>
+    <string name="edit_body_hint">Описание задачи</string>
+    <string name="edit_deadline_hint">Определить срок выполнения</string>
+    <string name="button_create_task">Добавить в список</string>
+    <string name="button_update_task">Обновить текущую задачу</string>
+    <string name="button_remove_task">Удалить задачу</string>
+    <string name="button_pick_datetime">Выбрать дату и время</string>
+    <string name="edit_is_done_hint">Задача выполнена?</string>
+    <string name="error_not_created_updated">Упс, задача не сохранилась</string>
+    <string name="error_null_result">Нет задач в базе</string>
+    <string name="error_empty_edits">Задача не может быть создана из пустых полей</string>
+    <string name="fill_no_title">Без названия</string>
+    <string name="insert_success">Задача создана</string>
+    <string name="update_success">Задача была обновлена</string>
 </resources>

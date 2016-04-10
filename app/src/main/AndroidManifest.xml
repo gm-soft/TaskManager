@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.github.maximgorbatyuk.taskmanager">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="io.github.maximgorbatyuk.taskmanager"
+    >
 
     <application
         android:allowBackup="true"
@@ -14,10 +16,32 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="io.github.mximgorbatyuk.action.TASK_MANAGER"/>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="io.github.maximgorbatyuk.taskmanager.SettingsActivity"
+            android:label="@string/action_settings"
+            >
+
+        </activity>
+        <activity
+            android:name="io.github.maximgorbatyuk.taskmanager.EditActivity"
+            android:label="@string/create_task"
+            >
+
+        </activity>
+
+        <activity
+            android:name="io.github.maximgorbatyuk.taskmanager.AboutActivity"
+            android:label="@string/action_about"
+            >
+
+        </activity>
+
+
     </application>
 
 </manifest>

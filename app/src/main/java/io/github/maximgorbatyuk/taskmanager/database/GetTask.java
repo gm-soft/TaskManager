@@ -4,11 +4,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
-import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import io.github.maximgorbatyuk.taskmanager.help.Task;
 
@@ -68,8 +71,8 @@ public class GetTask extends AsyncTask<String, Void, List<Task>> {
                     task.setTitle(      cursor.getString(cursor.getColumnIndex(TITLE_COLUMN)));
                     task.setBody(       cursor.getString(cursor.getColumnIndex(BODY_COLUMN)));
                     task.setIsDone(     Boolean.parseBoolean(cursor.getString(cursor.getColumnIndex(IS_DONE_COLUMN))));
-                    task.setDeadline(   Date.valueOf(cursor.getString(cursor.getColumnIndex(DEADLINE_COLUMN))));
-                    task.setCreatedAt(  Date.valueOf(cursor.getString(cursor.getColumnIndex(CREATED_AT_COLUMN))));
+                    task.setDeadline(   parseDate(cursor.getString(cursor.getColumnIndex(DEADLINE_COLUMN))));
+                    task.setCreatedAt(  parseDate(cursor.getString(cursor.getColumnIndex(CREATED_AT_COLUMN))));
                     task.setPriority(   Integer.parseInt(cursor.getString(cursor.getColumnIndex(PRIORITY_COLUMN))));
                     list.add(task);
                 } while (cursor.moveToNext());
@@ -92,5 +95,16 @@ public class GetTask extends AsyncTask<String, Void, List<Task>> {
     protected void onPostExecute(List<Task> task) {
         super.onPostExecute(task);
         delegate.processFinish(task);
+    }
+
+    @Nullable
+    private java.util.Date parseDate(String date){
+        try {
+            DateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.ENGLISH);
+            return format.parse(date);
+
+        } catch (Exception ex){
+            return null;
+        }
     }
 }

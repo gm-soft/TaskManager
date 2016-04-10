@@ -4,7 +4,13 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.support.annotation.Nullable;
 import android.util.Log;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import io.github.maximgorbatyuk.taskmanager.help.Task;
 
@@ -43,7 +49,7 @@ public class InsertTask extends AsyncTask<Task, Void, Boolean> {
 
     @Override
     protected Boolean doInBackground(Task... params) {
-        long count = -1;
+        long count = 0;
         Task task = params[0];
         initializeColumns();
         //
@@ -51,23 +57,27 @@ public class InsertTask extends AsyncTask<Task, Void, Boolean> {
         values.put(TITLE_COLUMN,        task.getTitle());
         values.put(BODY_COLUMN,         task.getBody());
         values.put(IS_DONE_COLUMN,      task.getIsDone());
-        values.put(DEADLINE_COLUMN,     task.getDeadline().toString());
-        values.put(CREATED_AT_COLUMN,   task.getCreatedAt().toString());
+        values.put(DEADLINE_COLUMN,     dateToString(task.getDeadline()));
+        values.put(CREATED_AT_COLUMN,   dateToString(task.getCreatedAt()));
         values.put(PRIORITY_COLUMN,     task.getPriority());
         SQLiteDatabase db = helper.getWritableDatabase();
-        db.beginTransaction();
-        try{
-            count = db.insert(TABLE_NAME, null, values);
-            db.setTransactionSuccessful();
 
+        try{
+            db.beginTransaction();
+
+            count = db.insert(TABLE_NAME, null, values);
+
+            db.setTransactionSuccessful();
+            //db.endTransaction();
         } catch (Exception ex){
             Log.d(LOG_TAG, "Error while task insert: " + ex.getMessage());
             count = 0;
         }
         finally {
-            //db.close();
             db.endTransaction();
+            db.close();
             helper.close();
+
         }
         return count > 0;
     }
@@ -76,5 +86,16 @@ public class InsertTask extends AsyncTask<Task, Void, Boolean> {
     protected void onPostExecute(Boolean aBoolean) {
         super.onPostExecute(aBoolean);
         delegate.processFinish(aBoolean);
+    }
+
+    @Nullable
+    private String dateToString(Date date){
+        try {
+            DateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.ENGLISH);
+            return format.format(date);
+
+        } catch (Exception ex){
+            return null;
+        }
     }
 }

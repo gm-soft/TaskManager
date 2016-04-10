@@ -1,4 +1,5 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="io.github.maximgorbatyuk.taskmanager.MainActivity">
@@ -6,5 +7,20 @@
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_about"
+        android:orderInCategory="100"
+        android:title="@string/action_about"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_show_all"
+        android:orderInCategory="100"
+        android:title="@string/action_show_all"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_show_uncomplicted"
+        android:orderInCategory="100"
+        android:title="@string/action_only_undone"
         app:showAsAction="never" />
 </menu>

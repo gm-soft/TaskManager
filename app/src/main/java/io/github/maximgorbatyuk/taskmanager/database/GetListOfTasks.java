@@ -1,14 +1,19 @@
 package io.github.maximgorbatyuk.taskmanager.database;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.util.Log;
 
-import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 
 import io.github.maximgorbatyuk.taskmanager.help.Task;
 
@@ -54,18 +59,20 @@ public class GetListOfTasks extends AsyncTask<String, Void, List<Task>> {
         List<Task> list = new ArrayList<>(0);
 
         SQLiteDatabase db = helper.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_NAME, null, null, null, null, null, DEADLINE_COLUMN);
         db.beginTransaction();
+
+        Cursor cursor = null;
         try{
+            cursor = db.query(TABLE_NAME, null, null, null, null, null, DEADLINE_COLUMN);
             if (cursor.moveToFirst()){
                 do {
                     Task task = new Task();
-                    task.setId(         cursor.getInt(cursor.getColumnIndex("_id")));
+                    task.setId(         cursor.getInt(cursor.getColumnIndex("id")));
                     task.setTitle(      cursor.getString(cursor.getColumnIndex(TITLE_COLUMN)));
                     task.setBody(       cursor.getString(cursor.getColumnIndex(BODY_COLUMN)));
                     task.setIsDone(     Boolean.parseBoolean(cursor.getString(cursor.getColumnIndex(IS_DONE_COLUMN))));
-                    task.setDeadline(   Date.valueOf(cursor.getString(cursor.getColumnIndex(DEADLINE_COLUMN))));
-                    task.setCreatedAt(  Date.valueOf(cursor.getString(cursor.getColumnIndex(CREATED_AT_COLUMN))));
+                    task.setDeadline(   parseDate(cursor.getString(cursor.getColumnIndex(DEADLINE_COLUMN))));
+                    task.setCreatedAt(  parseDate(cursor.getString(cursor.getColumnIndex(CREATED_AT_COLUMN))));
                     task.setPriority(   Integer.parseInt(cursor.getString(cursor.getColumnIndex(PRIORITY_COLUMN))));
                     list.add(task);
                 } while (cursor.moveToNext());
@@ -75,7 +82,8 @@ public class GetListOfTasks extends AsyncTask<String, Void, List<Task>> {
             Log.d(LOG_TAG, ex.getMessage());
         }
         finally {
-            cursor.close();
+            if (cursor != null)
+                cursor.close();
             db.endTransaction();
             db.close();
         }
@@ -87,5 +95,20 @@ public class GetListOfTasks extends AsyncTask<String, Void, List<Task>> {
     protected void onPostExecute(List<Task> tasks) {
         super.onPostExecute(tasks);
         delegate.processFinish(tasks);
+    }
+
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    private java.util.Date parseDate(String date){
+        if (!Objects.equals(date, "null")) {
+            try {
+                DateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.ENGLISH);
+                return format.parse(date);
+
+            } catch (Exception ex) {
+                return null;
+            }
+        }
+        else
+            return null;
     }
 }

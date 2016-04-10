@@ -19,7 +19,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String DEADLINE_COLUMN     = "deadline";
     private static final String CREATED_AT_COLUMN   = "created_at";
     private static final String PRIORITY_COLUMN    = "priority";
-    private static final int    DB_VERSION          = 2;
+    private static final int    DB_VERSION          = 3;
 
     private static final String DROP_TABLE          = "DROP TABLE IF EXISTS " + TABLE_NAME;
     private static final String CREATE_TABLE =
@@ -29,8 +29,8 @@ public class DBHelper extends SQLiteOpenHelper {
                     BODY_COLUMN         + " TEXT, " +
                     IS_DONE_COLUMN      + " BOOLEAN, " +
                     PRIORITY_COLUMN    + " INTEGER, " +
-                    DEADLINE_COLUMN     + " DATETIME, " +
-                    CREATED_AT_COLUMN   + " DATETIME )";
+                    DEADLINE_COLUMN     + " TEXT, " +
+                    CREATED_AT_COLUMN   + " TEXT )";
 
     Context context;
 
@@ -45,12 +45,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        db.execSQL(CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL(DROP_TABLE);
+        onCreate(db);
     }
 
     public String getTableName()        { return TABLE_NAME; }

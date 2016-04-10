@@ -1,6 +1,7 @@
 package io.github.maximgorbatyuk.taskmanager.help;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import io.github.maximgorbatyuk.taskmanager.R;
 
@@ -21,7 +26,7 @@ public class TaskAdapter extends ArrayAdapter<Task> {
     private Context context;
 
     public TaskAdapter(Context context, List<Task> list){
-        super(context, R.layout.task_item);
+        super(context, R.layout.task_item, list);
         this.context = context;
         this.list = list;
     }
@@ -29,7 +34,7 @@ public class TaskAdapter extends ArrayAdapter<Task> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View taskItem = inflater.inflate(R.layout.task_item, parent);
+        View taskItem = inflater.inflate(R.layout.task_item, parent, false);
 
         TextView title      = (TextView) taskItem.findViewById(R.id.listItemTitle);
         TextView body       = (TextView) taskItem.findViewById(R.id.listItemBody);
@@ -40,12 +45,23 @@ public class TaskAdapter extends ArrayAdapter<Task> {
 
         title.setText(      list.get(position).getTitle());
         body.setText(       list.get(position).getBody());
-        deadline.setText(   list.get(position).getDeadline().toString());
+        deadline.setText(   DateToString( list.get(position).getDeadline()));
         done.setChecked(    list.get(position).getIsDone());
-        id.setText(         list.get(position).getId());
-        createdAt.setText(  list.get(position).getCreatedAt().toString());
+        id.setText(         "" + list.get(position).getId());
+        createdAt.setText(  DateToString( list.get(position).getCreatedAt()));
 
         return taskItem;
         //return super.getView(position, convertView, parent);
+    }
+
+    @Nullable
+    private String DateToString(Date date){
+        try {
+            DateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.ENGLISH);
+            return format.format(date);
+
+        } catch (Exception ex){
+            return null;
+        }
     }
 }
