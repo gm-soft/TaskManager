@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import io.github.maximgorbatyuk.taskmanager.help.DateHelper;
 import io.github.maximgorbatyuk.taskmanager.help.Task;
 
 /**
@@ -52,8 +53,8 @@ public class UpdateTask extends AsyncTask<Task, Void, Boolean> {
         values.put(TITLE_COLUMN,        task.getTitle());
         values.put(BODY_COLUMN,         task.getBody());
         values.put(IS_DONE_COLUMN,      task.getIsDone());
-        values.put(DEADLINE_COLUMN,     task.getDeadline().toString());
-        values.put(CREATED_AT_COLUMN,   task.getCreatedAt().toString());
+        values.put(DEADLINE_COLUMN,     new DateHelper().dateToString( task.getDeadline() ));
+        values.put(CREATED_AT_COLUMN,   new DateHelper().dateToString(task.getCreatedAt() ));
         values.put(PRIORITY_COLUMN,     task.getPriority());
         SQLiteDatabase db = helper.getWritableDatabase();
         db.beginTransaction();
@@ -68,6 +69,7 @@ public class UpdateTask extends AsyncTask<Task, Void, Boolean> {
         finally {
             //db.close();
             db.endTransaction();
+            db.close();
             helper.close();
         }
         return count > 0;

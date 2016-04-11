@@ -5,12 +5,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import io.github.maximgorbatyuk.taskmanager.help.Task;
-
 /**
  * Created by Maxim on 09.04.2016.
  */
-public class RemoveTask extends AsyncTask<Task, Void, Boolean> {
+public class RemoveTask extends AsyncTask<Integer, Void, Boolean> {
 
     private String LOG_TAG = "Task Manager";
 
@@ -41,25 +39,25 @@ public class RemoveTask extends AsyncTask<Task, Void, Boolean> {
     }
 
     @Override
-    protected Boolean doInBackground(Task... params) {
+    protected Boolean doInBackground(Integer... params) {
         int count = -1;
-        Task task = params[0];
-        String args = "_id = " + task.getId();
+        initializeColumns();
+        String args = "id = " + params[0];
         SQLiteDatabase db = helper.getWritableDatabase();
         db.beginTransaction();
         try {
             count = db.delete(TABLE_NAME, args, null);
+            db.setTransactionSuccessful();
         } catch (Exception ex){
             Log.d(LOG_TAG, "Error while removing task: " + ex.getMessage());
             count = 0;
         }
         finally {
             db.endTransaction();
+            db.close();
             helper.close();
         }
-        if (count > 0)
-            return true;
-        return null;
+        return  count > 0;
     }
 
     @Override

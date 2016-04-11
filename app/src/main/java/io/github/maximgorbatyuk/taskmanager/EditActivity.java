@@ -4,7 +4,6 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -13,11 +12,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
 import io.github.maximgorbatyuk.taskmanager.database.ExecuteResult;
@@ -25,6 +20,7 @@ import io.github.maximgorbatyuk.taskmanager.database.GetTask;
 import io.github.maximgorbatyuk.taskmanager.database.GetTaskResult;
 import io.github.maximgorbatyuk.taskmanager.database.InsertTask;
 import io.github.maximgorbatyuk.taskmanager.database.UpdateTask;
+import io.github.maximgorbatyuk.taskmanager.help.DateHelper;
 import io.github.maximgorbatyuk.taskmanager.help.DatePickerFragment;
 import io.github.maximgorbatyuk.taskmanager.help.DateTimeInterface;
 import io.github.maximgorbatyuk.taskmanager.help.Task;
@@ -82,7 +78,7 @@ public class EditActivity extends AppCompatActivity {
             createdAt.setVisibility(View.INVISIBLE);
             switchDone.setVisibility(View.INVISIBLE);
         }
-        else{
+        if (Objects.equals(ACTION, "update")){
             insertUpdateButton.setText(getString(R.string.button_update_task));
             insertUpdateButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -96,6 +92,7 @@ public class EditActivity extends AppCompatActivity {
             GetTaskAndFillEdits(getIntent().getStringExtra("id"));
         }
         //------------------------
+
     }
 
     public void showDeadlineDialog(View v){
@@ -128,10 +125,10 @@ public class EditActivity extends AppCompatActivity {
     private void fillEdits(Task task){
         editTitle.setText( task.getTitle() );
         editBody.setText( task.getBody() );
-        textDeadline.setText( task.getDeadline().toString() );
+        textDeadline.setText( new DateHelper().dateToString( task.getDeadline()) );
         switchDone.setChecked( task.getIsDone() );
-        createdAt.setText( task.getCreatedAt().toString() );
-        taskId.setText( task.getId() );
+        createdAt.setText( new DateHelper().dateToString( task.getCreatedAt() ));
+        taskId.setText(task.getId() + "");
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
@@ -149,22 +146,24 @@ public class EditActivity extends AppCompatActivity {
         createdAt.setText( task.getCreatedAt().toString() );
         taskId.setText( task.getId() );
         */
-        if (taskId.getText().toString().isEmpty() || Objects.equals(ACTION, "create")) {
-            task.setId      (-1);
-        } else {
-            task.setId      (Integer.parseInt(taskId.getText().toString()));
-        }
-
-        if (!editTitle.getText().toString().isEmpty())
-            task.setTitle   (editTitle.getText().toString());
-        else
-            task.setTitle   (getString(R.string.fill_no_title));
+        int id = (taskId.getText().toString().isEmpty() || Objects.equals(ACTION, "create")) ?
+                -1 :
+                Integer.parseInt(taskId.getText().toString());
+        task.setId(id);
+        task.setTitle   (!editTitle.getText().toString().isEmpty() ?
+                editTitle.getText().toString() :
+                getString(R.string.fill_no_title));
 
         task.setBody    (editBody.getText().toString());
 
-        task.setDeadline(parseDate(textDeadline.getText().toString()));
+        task.setDeadline( !textDeadline.getText().toString().isEmpty() ?
+                new DateHelper().parseDate(textDeadline.getText().toString()) :
+                null);
+
         task.setIsDone  (switchDone.isChecked());
-        task.setCreatedAt(parseDate(createdAt.getText().toString()));
+        task.setCreatedAt(!createdAt.getText().toString().isEmpty()?
+                new DateHelper().parseDate(createdAt.getText().toString()) :
+                task.getCreatedAt());
 
         return task;
     }
@@ -174,7 +173,11 @@ public class EditActivity extends AppCompatActivity {
             @Override
             public void processFinish(List<Task> task) {
                 if (task.size() > 0)
-                    fillEdits(task.get(0));
+                    try {
+                        fillEdits(task.get(0));
+                    } catch (Exception ex){
+                        showNotification(ex.getMessage());
+                    }
                 else
                     showNotification(getString(R.string.error_null_result));
             }
@@ -185,16 +188,7 @@ public class EditActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
     }
 
-    @Nullable
-    private Date parseDate(String date){
-        try {
-            DateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.ENGLISH);
-            return format.parse(date);
 
-        } catch (Exception ex){
-            return null;
-        }
-    }
 
     private void insertTaskToDatabase(Task task){
         if (task != null) {
@@ -236,5 +230,7 @@ public class EditActivity extends AppCompatActivity {
         finish();
     }
 
-
+    public void clearDeadline(View view) {
+        textDeadline.setText("");
+    }
 }

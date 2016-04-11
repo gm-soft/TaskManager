@@ -1,20 +1,15 @@
 package io.github.maximgorbatyuk.taskmanager.database;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.util.Log;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
 
+import io.github.maximgorbatyuk.taskmanager.help.DateHelper;
 import io.github.maximgorbatyuk.taskmanager.help.Task;
 
 /**
@@ -71,8 +66,8 @@ public class GetListOfTasks extends AsyncTask<String, Void, List<Task>> {
                     task.setTitle(      cursor.getString(cursor.getColumnIndex(TITLE_COLUMN)));
                     task.setBody(       cursor.getString(cursor.getColumnIndex(BODY_COLUMN)));
                     task.setIsDone(     Boolean.parseBoolean(cursor.getString(cursor.getColumnIndex(IS_DONE_COLUMN))));
-                    task.setDeadline(   parseDate(cursor.getString(cursor.getColumnIndex(DEADLINE_COLUMN))));
-                    task.setCreatedAt(  parseDate(cursor.getString(cursor.getColumnIndex(CREATED_AT_COLUMN))));
+                    task.setDeadline(   new DateHelper().parseDate(cursor.getString(cursor.getColumnIndex(DEADLINE_COLUMN))));
+                    task.setCreatedAt(  new DateHelper().parseDate(cursor.getString(cursor.getColumnIndex(CREATED_AT_COLUMN))));
                     task.setPriority(   Integer.parseInt(cursor.getString(cursor.getColumnIndex(PRIORITY_COLUMN))));
                     list.add(task);
                 } while (cursor.moveToNext());
@@ -97,18 +92,5 @@ public class GetListOfTasks extends AsyncTask<String, Void, List<Task>> {
         delegate.processFinish(tasks);
     }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    private java.util.Date parseDate(String date){
-        if (!Objects.equals(date, "null")) {
-            try {
-                DateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.ENGLISH);
-                return format.parse(date);
 
-            } catch (Exception ex) {
-                return null;
-            }
-        }
-        else
-            return null;
-    }
 }

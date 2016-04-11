@@ -16,7 +16,7 @@
 * [Вопрос](http://stackoverflow.com/questions/5683728/convert-java-util-date-to-string) о парсинге даты в строку. О формате вывода
 * [Туториал](http://www.tutorialspoint.com/android/android_sqlite_database.htm) по базам данных
 * [Вопрос](http://stackoverflow.com/questions/3013021/embed-a-database-in-the-apk-of-a-distributed-application-android) об выходящей ошибке отсутствия файла базы данных. В эмуляторе от Гугла это актуально, на дженимуошене решение не понадобилось
-* []()
+* [Подробно](http://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html)  форматировании даты и времени
 
 ### Интерфейс
 * [Снова](http://hmkcode.com/android-custom-listview-items-row/) про кастомные списки
@@ -24,3 +24,4 @@
 * [И еще раз](http://stackoverflow.com/questions/4508979/android-listview-get-selected-item) про выбор элемента в списке
 * [И уще разок](http://stackoverflow.com/questions/12567779/get-access-to-a-view-inside-each-row-of-listview) про выбор элемента в списке
 * [Урок](http://startandroid.ru/ru/uroki/vse-uroki-spiskom/81-urok-41-ispolzuem-layoutinflater-dlja-sozdanija-spiska.html) по Inflater
+*[Статья](https://guides.codepath.com/android/Using-the-App-ToolBar) про App ToolBar. Нужно почитать и изучать блее подробно. ПОка не применял на практике

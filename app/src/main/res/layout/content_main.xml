@@ -18,17 +18,15 @@
         android:id="@+id/textView"
         android:text="@string/no_items"
         android:textSize="30sp"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:focusable="false"
+        />
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/listTasks"
-        android:visibility="invisible"
-        android:focusable="false"
-        android:fastScrollAlwaysVisible="false"
-        android:scrollIndicators="right"
-        android:smoothScrollbar="false">
-
-    </ListView>
+        android:visibility="visible"
+        />
 
 </RelativeLayout>

@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import java.text.DateFormat;
@@ -39,19 +38,19 @@ public class TaskAdapter extends ArrayAdapter<Task> {
         TextView title      = (TextView) taskItem.findViewById(R.id.listItemTitle);
         TextView body       = (TextView) taskItem.findViewById(R.id.listItemBody);
         TextView deadline   = (TextView) taskItem.findViewById(R.id.listItemDeadline);
-        Switch   done       = (Switch)   taskItem.findViewById(R.id.listItemDone);
+        //Switch   done       = (Switch)   taskItem.findViewById(R.id.listItemDone);
         TextView id         = (TextView) taskItem.findViewById(R.id.listItemId);
         TextView createdAt  = (TextView) taskItem.findViewById(R.id.listItemCreatedAt);
 
         title.setText(      list.get(position).getTitle());
         body.setText(       list.get(position).getBody());
         deadline.setText(   DateToString( list.get(position).getDeadline()));
-        done.setChecked(    list.get(position).getIsDone());
+        //done.setChecked(    list.get(position).getIsDone());
         id.setText(         "" + list.get(position).getId());
         createdAt.setText(  DateToString( list.get(position).getCreatedAt()));
 
         return taskItem;
-        //return super.getView(position, convertView, parent);
+        //return super.getView(position, taskItem, parent);
     }
 
     @Nullable
@@ -64,4 +63,6 @@ public class TaskAdapter extends ArrayAdapter<Task> {
             return null;
         }
     }
+
+
 }

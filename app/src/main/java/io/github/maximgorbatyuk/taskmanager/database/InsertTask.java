@@ -4,14 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
+import io.github.maximgorbatyuk.taskmanager.help.DateHelper;
 import io.github.maximgorbatyuk.taskmanager.help.Task;
 
 /**
@@ -57,8 +52,8 @@ public class InsertTask extends AsyncTask<Task, Void, Boolean> {
         values.put(TITLE_COLUMN,        task.getTitle());
         values.put(BODY_COLUMN,         task.getBody());
         values.put(IS_DONE_COLUMN,      task.getIsDone());
-        values.put(DEADLINE_COLUMN,     dateToString(task.getDeadline()));
-        values.put(CREATED_AT_COLUMN,   dateToString(task.getCreatedAt()));
+        values.put(DEADLINE_COLUMN,     new DateHelper().dateToString(task.getDeadline()));
+        values.put(CREATED_AT_COLUMN,   new DateHelper().dateToString(task.getCreatedAt()));
         values.put(PRIORITY_COLUMN,     task.getPriority());
         SQLiteDatabase db = helper.getWritableDatabase();
 
@@ -88,14 +83,5 @@ public class InsertTask extends AsyncTask<Task, Void, Boolean> {
         delegate.processFinish(aBoolean);
     }
 
-    @Nullable
-    private String dateToString(Date date){
-        try {
-            DateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.ENGLISH);
-            return format.format(date);
 
-        } catch (Exception ex){
-            return null;
-        }
-    }
 }
