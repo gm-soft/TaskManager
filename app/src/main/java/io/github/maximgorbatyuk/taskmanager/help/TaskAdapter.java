@@ -1,30 +1,23 @@
 package io.github.maximgorbatyuk.taskmanager.help;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import io.github.maximgorbatyuk.taskmanager.R;
 
-/**
- * Created by Maxim on 09.04.2016.
- */
-public class TaskAdapter extends ArrayAdapter<Task> {
 
-    private List<Task> list;
+public class TaskAdapter extends ArrayAdapter<Project> {
+
+    private List<Project> list;
     private Context context;
 
-    public TaskAdapter(Context context, List<Task> list){
+    public TaskAdapter(Context context, List<Project> list){
         super(context, R.layout.task_item, list);
         this.context = context;
         this.list = list;
@@ -38,31 +31,28 @@ public class TaskAdapter extends ArrayAdapter<Task> {
         TextView title      = (TextView) taskItem.findViewById(R.id.listItemTitle);
         TextView body       = (TextView) taskItem.findViewById(R.id.listItemBody);
         TextView deadline   = (TextView) taskItem.findViewById(R.id.listItemDeadline);
-        //Switch   done       = (Switch)   taskItem.findViewById(R.id.listItemDone);
         TextView id         = (TextView) taskItem.findViewById(R.id.listItemId);
         TextView createdAt  = (TextView) taskItem.findViewById(R.id.listItemCreatedAt);
 
         title.setText(      list.get(position).getTitle());
         body.setText(       list.get(position).getBody());
-        deadline.setText(   DateToString( list.get(position).getDeadline()));
-        //done.setChecked(    list.get(position).getIsDone());
+        String deadline_str = context.getString(R.string.no_deadline);
+        if (list.get(position).getDeadline() != null)
+            deadline_str = new DateHelper().DateToShortString( list.get(position).getDeadline());
+
+        deadline.setText( deadline_str );
+        //done.setChecked(    );
         id.setText(         "" + list.get(position).getId());
-        createdAt.setText(  DateToString( list.get(position).getCreatedAt()));
+        createdAt.setText(  new DateHelper().DateToShortString( list.get(position).getCreatedAt()));
+
+        if (list.get(position).getIsDone())
+            taskItem.setBackgroundResource(R.color.finishedColor);
 
         return taskItem;
         //return super.getView(position, taskItem, parent);
     }
 
-    @Nullable
-    private String DateToString(Date date){
-        try {
-            DateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.ENGLISH);
-            return format.format(date);
 
-        } catch (Exception ex){
-            return null;
-        }
-    }
 
 
 }

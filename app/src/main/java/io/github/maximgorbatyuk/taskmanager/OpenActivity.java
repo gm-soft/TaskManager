@@ -15,10 +15,10 @@ import android.widget.Toast;
 import java.util.List;
 import java.util.Objects;
 
-import io.github.maximgorbatyuk.taskmanager.database.GetTask;
-import io.github.maximgorbatyuk.taskmanager.database.GetTaskResult;
+import io.github.maximgorbatyuk.taskmanager.database.ReadProject;
+import io.github.maximgorbatyuk.taskmanager.database.ReadProjectResult;
 import io.github.maximgorbatyuk.taskmanager.help.DateHelper;
-import io.github.maximgorbatyuk.taskmanager.help.Task;
+import io.github.maximgorbatyuk.taskmanager.help.Project;
 
 public class OpenActivity extends AppCompatActivity {
 
@@ -41,22 +41,22 @@ public class OpenActivity extends AppCompatActivity {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     }
 
-    private void fillTask(Task task){
+    private void fillTask(Project project){
         try {
-            TASK_ID = task.getId();
+            TASK_ID = project.getId();
 
             ((TextView) findViewById(R.id.openBody)).setText(
-                    task.getBody());
+                    project.getBody());
             ((TextView) findViewById(R.id.openDeadline)).setText(
-                    new DateHelper().dateToString( task.getDeadline()));
+                    new DateHelper().dateToString( project.getDeadline()));
             ((TextView) findViewById(R.id.openCreatedAt)).setText(
-                    new DateHelper().dateToString( task.getCreatedAt() ));
+                    new DateHelper().dateToString( project.getCreatedAt() ));
             ((TextView) findViewById(R.id.openStatus)).setText(
-                    task.getIsDone() ?
+                    project.getIsDone() ?
                             getString(R.string.open_status) :
                             getString(R.string.open_status_not_done) );
-            ((TextView) findViewById(R.id.openId)).setText("" + task.getId());
-            ((CollapsingToolbarLayout)findViewById(R.id.toolbar_layout)).setTitle(task.getTitle());
+            ((TextView) findViewById(R.id.openId)).setText("" + project.getId());
+            ((CollapsingToolbarLayout)findViewById(R.id.toolbar_layout)).setTitle(project.getTitle());
 
         }
         catch (Exception ex){
@@ -65,11 +65,11 @@ public class OpenActivity extends AppCompatActivity {
     }
 
     private void getTask(String id){
-        new GetTask(this, new GetTaskResult() {
+        new ReadProject(this, new ReadProjectResult() {
             @Override
-            public void processFinish(List<Task> task) {
-                if (task.size() > 0) {
-                    fillTask(task.get(0));
+            public void processFinish(List<Project> project) {
+                if (project.size() > 0) {
+                    fillTask(project.get(0));
                 }
                 else
                     showNotification(getString(R.string.error_smth_goes_wrong));

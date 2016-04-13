@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/editID"
-            android:text="ID task"
+            android:text="ID project"
             android:visibility="visible"
             android:layout_alignTop="@+id/textViewEditDescribe"
             android:layout_alignRight="@+id/textViewEditDescribe"

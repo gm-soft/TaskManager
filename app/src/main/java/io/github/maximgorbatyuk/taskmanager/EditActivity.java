@@ -16,28 +16,25 @@ import java.util.List;
 import java.util.Objects;
 
 import io.github.maximgorbatyuk.taskmanager.database.ExecuteResult;
-import io.github.maximgorbatyuk.taskmanager.database.GetTask;
-import io.github.maximgorbatyuk.taskmanager.database.GetTaskResult;
-import io.github.maximgorbatyuk.taskmanager.database.InsertTask;
-import io.github.maximgorbatyuk.taskmanager.database.UpdateTask;
+import io.github.maximgorbatyuk.taskmanager.database.ReadProject;
+import io.github.maximgorbatyuk.taskmanager.database.ReadProjectResult;
+import io.github.maximgorbatyuk.taskmanager.database.CreateProject;
+import io.github.maximgorbatyuk.taskmanager.database.UpdateProject;
 import io.github.maximgorbatyuk.taskmanager.help.DateHelper;
 import io.github.maximgorbatyuk.taskmanager.help.DatePickerFragment;
 import io.github.maximgorbatyuk.taskmanager.help.DateTimeInterface;
-import io.github.maximgorbatyuk.taskmanager.help.Task;
+import io.github.maximgorbatyuk.taskmanager.help.Project;
 import io.github.maximgorbatyuk.taskmanager.help.TimePickerFragment;
 
 
 public class EditActivity extends AppCompatActivity {
-
-    private int DEADLINE_DATE = 0;
-    private int DEADLINE_TIME = 0;
 
     private EditText editTitle;
     private EditText editBody;
     private TextView textDeadline;
     private Switch switchDone;
     private TextView createdAt;
-    private TextView taskId;
+    private TextView projectId;
     //-
     private Button insertUpdateButton;
     private Button removeTask;
@@ -58,7 +55,7 @@ public class EditActivity extends AppCompatActivity {
         textDeadline    = (TextView) findViewById(R.id.textViewDeadline);
         switchDone      = (Switch)   findViewById(R.id.switch1);
         createdAt       = (TextView) findViewById(R.id.editCreatedAt);
-        taskId          = (TextView) findViewById(R.id.editID);
+        projectId       = (TextView) findViewById(R.id.editID);
 
         TextView desc = (TextView) findViewById(R.id.textViewEditDescribe);
 
@@ -89,7 +86,7 @@ public class EditActivity extends AppCompatActivity {
             desc.setText(getString(R.string.edit_activity_update_task));
             createdAt.setVisibility(View.VISIBLE);
             switchDone.setVisibility(View.VISIBLE);
-            GetTaskAndFillEdits(getIntent().getStringExtra("id"));
+            GetProjectAndFillEdits(getIntent().getStringExtra("id"));
         }
         //------------------------
 
@@ -122,59 +119,59 @@ public class EditActivity extends AppCompatActivity {
         fragment.show(getSupportFragmentManager(), "timePicker");
     }
 
-    private void fillEdits(Task task){
-        editTitle.setText( task.getTitle() );
-        editBody.setText( task.getBody() );
-        textDeadline.setText( new DateHelper().dateToString( task.getDeadline()) );
-        switchDone.setChecked( task.getIsDone() );
-        createdAt.setText( new DateHelper().dateToString( task.getCreatedAt() ));
-        taskId.setText(task.getId() + "");
+    private void fillEdits(Project project){
+        editTitle.      setText(    project.getTitle() );
+        editBody.       setText(    project.getBody() );
+        textDeadline.   setText(new DateHelper().dateToString( project.getDeadline()) );
+        switchDone.     setChecked( project.getIsDone() );
+        createdAt.      setText(new DateHelper().dateToString( project.getCreatedAt() ));
+        projectId.      setText(    "" + project.getId());
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
-    private Task constructTask(){
+    private Project constructTask(){
         if (Objects.equals(ACTION, "create") && editBody.getText().toString().isEmpty()){
             showNotification(getString(R.string.error_empty_edits));
             return null;
         }
-        Task task = new Task();
+        Project project = new Project();
         /*
-        editTitle.setText( task.getTitle() );
-        editBody.setText( task.getBody() );
-        textDeadline.setText( task.getDeadline().toString() );
-        switchDone.setChecked( task.getIsDone() );
-        createdAt.setText( task.getCreatedAt().toString() );
-        taskId.setText( task.getId() );
+        editTitle.setText( project.getTitle() );
+        editBody.setText( project.getBody() );
+        textDeadline.setText( project.getDeadline().toString() );
+        switchDone.setChecked( project.getIsDone() );
+        createdAt.setText( project.getCreatedAt().toString() );
+        projectId.setText( project.getId() );
         */
-        int id = (taskId.getText().toString().isEmpty() || Objects.equals(ACTION, "create")) ?
+        int id = (projectId.getText().toString().isEmpty() || Objects.equals(ACTION, "create")) ?
                 -1 :
-                Integer.parseInt(taskId.getText().toString());
-        task.setId(id);
-        task.setTitle   (!editTitle.getText().toString().isEmpty() ?
+                Integer.parseInt(projectId.getText().toString());
+        project.setId(id);
+        project.setTitle(!editTitle.getText().toString().isEmpty() ?
                 editTitle.getText().toString() :
                 getString(R.string.fill_no_title));
 
-        task.setBody    (editBody.getText().toString());
+        project.setBody(editBody.getText().toString());
 
-        task.setDeadline( !textDeadline.getText().toString().isEmpty() ?
+        project.setDeadline( !textDeadline.getText().toString().isEmpty() ?
                 new DateHelper().parseDate(textDeadline.getText().toString()) :
                 null);
 
-        task.setIsDone  (switchDone.isChecked());
-        task.setCreatedAt(!createdAt.getText().toString().isEmpty()?
+        project.setIsDone(switchDone.isChecked());
+        project.setCreatedAt(!createdAt.getText().toString().isEmpty()?
                 new DateHelper().parseDate(createdAt.getText().toString()) :
-                task.getCreatedAt());
+                project.getCreatedAt());
 
-        return task;
+        return project;
     }
 
-    private void GetTaskAndFillEdits(String id){
-        new GetTask(this, new GetTaskResult() {
+    private void GetProjectAndFillEdits(String id){
+        new ReadProject(this, new ReadProjectResult() {
             @Override
-            public void processFinish(List<Task> task) {
-                if (task.size() > 0)
+            public void processFinish(List<Project> project) {
+                if (project.size() > 0)
                     try {
-                        fillEdits(task.get(0));
+                        fillEdits(project.get(0));
                     } catch (Exception ex){
                         showNotification(ex.getMessage());
                     }
@@ -190,9 +187,9 @@ public class EditActivity extends AppCompatActivity {
 
 
 
-    private void insertTaskToDatabase(Task task){
-        if (task != null) {
-            new InsertTask(getApplicationContext(), new ExecuteResult() {
+    private void insertTaskToDatabase(Project project){
+        if (project != null) {
+            new CreateProject(getApplicationContext(), new ExecuteResult() {
                 @Override
                 public void processFinish(Boolean result) {
                     if (result)
@@ -200,15 +197,15 @@ public class EditActivity extends AppCompatActivity {
                     else
                         showNotification(getString(R.string.error_not_created_updated));
                 }
-            }).execute(task);
+            }).execute(project);
         }
         else
             showNotification(getString(R.string.error_empty_edits));
     }
 
-    private void updateTaskInDatabase(Task task){
-        if (task != null) {
-            new UpdateTask(getApplicationContext(), new ExecuteResult() {
+    private void updateTaskInDatabase(Project project){
+        if (project != null) {
+            new UpdateProject(getApplicationContext(), new ExecuteResult() {
                 @Override
                 public void processFinish(Boolean result) {
                     if (result)
@@ -216,7 +213,7 @@ public class EditActivity extends AppCompatActivity {
                     else
                         showNotification(getString(R.string.error_not_created_updated));
                 }
-            }).execute(task);
+            }).execute(project);
         }
         else
             showNotification(getString(R.string.error_empty_edits));

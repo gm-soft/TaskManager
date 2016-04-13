@@ -36,12 +36,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/editID"
-            android:text="ID task"
-            android:visibility="visible"
+            android:text="ID project"
+            android:visibility="invisible"
             android:layout_alignTop="@+id/textViewEditDescribe"
             android:layout_alignRight="@+id/textViewEditDescribe"
             android:layout_alignEnd="@+id/textViewEditDescribe"
-            android:layout_gravity="right" />
+            android:layout_gravity="right"
+
+            />
     </RelativeLayout>
 
         <EditText
@@ -63,7 +65,9 @@
 
      <RelativeLayout
          android:layout_width="match_parent"
-         android:layout_height="wrap_content">
+         android:layout_height="wrap_content"
+         android:layout_marginTop="5dp"
+         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -96,13 +100,7 @@
             android:layout_height="wrap_content"
             android:text="@string/edit_is_done_hint"
             android:id="@+id/switch1"
-
-            android:layout_below="@+id/textViewDeadline"
-            android:layout_alignLeft="@+id/editTaskBody"
-            android:layout_alignStart="@+id/editTaskBody"
-            android:layout_alignRight="@+id/editTaskBody"
-            android:layout_alignEnd="@+id/editTaskBody"
-            android:padding="10dp"
+            android:layout_marginTop="5dp"
             />
 
         <RelativeLayout
@@ -121,16 +119,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
         </RelativeLayout>
-
-        <!--Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_pick_datetime"
-        android:id="@+id/buttonDateTime"
-        android:layout_below="@+id/editTaskBody"
-        android:layout_toRightOf="@+id/textViewDeadline"
-        android:layout_toEndOf="@+id/textViewDeadline"
-        android:onClick="showDeadlineDialog"/-->
     </LinearLayout>
 
     <Button

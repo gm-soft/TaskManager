@@ -1,75 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="5dp"
-    >
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/listItemTitle"
-        android:text="Title"
-        android:textColor="@color/textMain"
-        android:padding="10dp"
-        android:textSize="20sp"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/listItemBody"
-        android:layout_alignParentLeft="true" />
-    <TextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="body"
-        android:id="@+id/listItemBody"
-        android:textColor="@color/textMain"
-        android:paddingLeft="10dp"
-        android:maxLines="2"
-        android:layout_below="@+id/listItemTitle"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        android:orientation="horizontal"
 
-    <!--Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/listItemDone"
-        android:text="@string/list_item_checkbox"
-        android:paddingLeft="10dp"
-        android:layout_below="@+id/listItemTitle"
-        android:layout_alignEnd="@+id/listItemDeadline"
-        android:layout_marginTop="15dp"
-        android:singleLine="true"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentRight="true"
-        android:checked="false"
-        android:nestedScrollingEnabled="false"
-        /-->
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/listItemDeadline"
-        android:text="@string/list_item_deadline"
-        android:textColor="@color/textSecondary"
-        android:layout_alignBaseline="@+id/listItemTitle"
-        android:layout_alignBottom="@+id/listItemTitle"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true" />
-
+        >
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ID"
         android:id="@+id/listItemId"
-        android:layout_below="@+id/listItemDeadline"
-        android:layout_alignEnd="@+id/listItemDeadline"
-        android:layout_alignParentRight="true"
         android:visibility="invisible" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toLeftOf="@+id/linearLayout2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/listItemTitle"
+                android:text="Title"
+                android:textColor="@color/textMain"
+                android:textSize="20sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="body"
+                android:id="@+id/listItemBody"
+                android:textColor="@color/textMain"
+                android:maxLines="2"
+                android:layout_marginTop="5dp"
+                />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/listItemCreatedAt"
-        android:visibility="invisible"/>
+        </LinearLayout>
 
-</RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/linearLayout2"
+            android:layout_alignParentBottom="true"
+
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/listItemDeadline"
+                android:text="@string/list_item_deadline"
+                android:textColor="@color/textMain"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/open_created_at"
+                android:visibility="visible" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/listItemCreatedAt"
+                android:visibility="visible"/>
+
+        </LinearLayout>
+    </RelativeLayout>

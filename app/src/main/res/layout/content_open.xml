@@ -18,7 +18,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Here would be a body of task"
+            android:text="Here would be a body of project"
             android:id="@+id/openBody"
             android:textColor="@color/textMain"
             android:textSize="20sp"
@@ -44,7 +44,8 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:textColor="@color/textMain"/>
 
         </RelativeLayout>
         <RelativeLayout
@@ -68,6 +69,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:textSize="16sp"
+                android:textColor="@color/textMain"
                 />
 
         </RelativeLayout>
@@ -91,9 +93,62 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:textSize="16sp"
+                android:textColor="@color/textMain"
                 />
 
         </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/spent_time"
+                android:textSize="16sp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Spent time value"
+                android:id="@+id/openSpentTime"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:textSize="16sp"
+                android:textColor="@color/textMain"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/project_cost"
+                android:textSize="16sp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Costs value"
+                android:id="@+id/openCosts"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:textSize="16sp"
+                android:textColor="@color/textMain"
+                />
+
+        </RelativeLayout>
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

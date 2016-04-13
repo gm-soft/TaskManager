@@ -21,10 +21,10 @@ import java.util.List;
 import java.util.Objects;
 
 import io.github.maximgorbatyuk.taskmanager.database.ExecuteResult;
-import io.github.maximgorbatyuk.taskmanager.database.GetListOfTasks;
-import io.github.maximgorbatyuk.taskmanager.database.GetListOfTasksResult;
-import io.github.maximgorbatyuk.taskmanager.database.RemoveTask;
-import io.github.maximgorbatyuk.taskmanager.help.Task;
+import io.github.maximgorbatyuk.taskmanager.database.GetListOfProjects;
+import io.github.maximgorbatyuk.taskmanager.database.GetListOfProjectsResult;
+import io.github.maximgorbatyuk.taskmanager.database.DestroyProject;
+import io.github.maximgorbatyuk.taskmanager.help.Project;
 import io.github.maximgorbatyuk.taskmanager.help.TaskAdapter;
 
 public class MainActivity extends AppCompatActivity {
@@ -150,15 +150,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getTasksList(){
-        new GetListOfTasks(this, new GetListOfTasksResult() {
+        new GetListOfProjects(this, new GetListOfProjectsResult() {
             @Override
-            public void processFinish(List<Task> list) {
+            public void processFinish(List<Project> list) {
                 fillListByTasks(list);
             }
         }).execute();
     }
 
-    private void fillListByTasks(List<Task> source){
+    private void fillListByTasks(List<Project> source){
         if (source.size() > 0) {
             adapter = new TaskAdapter(this, source);
             listView.setVisibility(View.VISIBLE);
@@ -223,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void removeTask(int id){
-        new RemoveTask(this, new ExecuteResult() {
+        new DestroyProject(this, new ExecuteResult() {
             @Override
             public void processFinish(Boolean result) {
                 if (result) {
