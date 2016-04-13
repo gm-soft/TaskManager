@@ -1,3 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="E:\ProgramDevelopment\Android\TaskManager\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="42235f8663f2dfae803cbcea1439ba9c369b60d9">
+        <dex dex="E:\ProgramDevelopment\Android\TaskManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_113809a1c2306c1c1bd8267680a6417247f86395\classes.dex" />
+    </item>
+    <item
+        jar="E:\ProgramDevelopment\Android\TaskManager\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.2.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="e4d0cbb0b999604b349062f0214a0a228a7fd151">
+        <dex dex="E:\ProgramDevelopment\Android\TaskManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.2.1_9d9b42c082da057efbe07635d8a1988db7b1e59c\classes.dex" />
+    </item>
+    <item
+        jar="E:\ProgramDevelopment\Android\TaskManager\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="dbbbcd8e64ea3a62ee53ad8b6c47b3caea865f49">
+        <dex dex="E:\ProgramDevelopment\Android\TaskManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_f000a302fb8193b02a88c7dbaab4ef289a515183\classes.dex" />
+    </item>
+    <item
+        jar="E:\ProgramDevelopment\Android\TaskManager\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.2.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="673d77a5bbddd766037f088e775df525c46407f0">
+        <dex dex="E:\ProgramDevelopment\Android\TaskManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.2.1_057bb720b2bab24097929ddb741f89079bf2e92e\classes.dex" />
+    </item>
+    <item
+        jar="E:\ProgramDevelopment\Android\TaskManager\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.2.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="e3885783ff8926ed9e2fdcd16816c2e1e73e7aee">
+        <dex dex="E:\ProgramDevelopment\Android\TaskManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.2.1_05640b383be93514a18dd1a5aec983777df21aef\classes.dex" />
+    </item>
+    <item
+        jar="E:\Android-tools\sdk\extras\android\m2repository\com\android\support\support-annotations\23.2.1\support-annotations-23.2.1.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ccb693bc0774fcb637246f7360de25b4af7df318">
+        <dex dex="E:\ProgramDevelopment\Android\TaskManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.2.1_44672d2dc65b3a029a599fe1d6260b29a63049cd\classes.dex" />
+    </item>
+    <item
+        jar="E:\ProgramDevelopment\Android\TaskManager\app\build\intermediates\exploded-aar\com.android.support\design\23.2.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="72961d8b453b46e277702f18de9d210bc019e36e">
+        <dex dex="E:\ProgramDevelopment\Android\TaskManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-23.2.1_fa06fad25a8ec48a7d56393898f33f6954cde132\classes.dex" />
+    </item>
+    <item
+        jar="E:\ProgramDevelopment\Android\TaskManager\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="3be474b1b21b31cf2fa93fe6bd641ae108d96452">
+        <dex dex="E:\ProgramDevelopment\Android\TaskManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.2.1_8b9097ba4674a113b6b77315badb86d6989ff7ac\classes.dex" />
+    </item>
+    <item
+        jar="E:\ProgramDevelopment\Android\TaskManager\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.1\jars\libs\internal_impl-23.2.1.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="607a3d0b8013b4ccbfeb0b7cb293351994e021fb">
+        <dex dex="E:\ProgramDevelopment\Android\TaskManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.2.1_cfc051068277bd63a7bd007b4a413495a4ee1b70\classes.dex" />
+    </item>
+    <item
+        jar="E:\ProgramDevelopment\Android\TaskManager\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.2.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="3469cb457f10f74c28cbc05f069b6c894f6cbdd0">
+        <dex dex="E:\ProgramDevelopment\Android\TaskManager\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.2.1_26bd578556c5b5a55798ea171e1ae68df7585b7b\classes.dex" />
+    </item>
+
+</items>

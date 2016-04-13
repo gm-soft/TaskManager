@@ -58,6 +58,7 @@
         android:id="@+id/editTaskBody"
         android:hint="@string/edit_body_hint"
         android:inputType="textMultiLine"
+
         android:layout_weight="0.97" />
 
      <RelativeLayout

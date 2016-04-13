@@ -39,14 +39,6 @@ public class OpenActivity extends AppCompatActivity {
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        if (fab != null) {
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    editTask();
-                }
-            });
-        }
     }
 
     private void fillTask(Task task){
@@ -85,14 +77,6 @@ public class OpenActivity extends AppCompatActivity {
         }).execute("one", id);
     }
 
-    private void editTask(){
-        Intent intent = new Intent(this, EditActivity.class);
-        intent.putExtra("action", "update");
-        intent.putExtra("id", "" + TASK_ID);
-        startActivityForResult(intent, 1);
-
-    }
-
     @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -110,5 +94,6 @@ public class OpenActivity extends AppCompatActivity {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 
-
+    public void onPlayFabClick(View view) {
+    }
 }

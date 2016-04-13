@@ -21,17 +21,18 @@
         </activity>
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/action_settings"></activity>
+            android:label="@string/action_settings" />
         <activity
             android:name=".EditActivity"
-            android:label="@string/create_task"></activity>
+            android:label="@string/create_task" />
         <activity
             android:name=".AboutActivity"
-            android:label="@string/action_about"></activity>
+            android:label="@string/action_about" />
         <activity
             android:name=".OpenActivity"
             android:label="@string/title_activity_open"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".CounterActivity"></activity>
     </application>
 
 </manifest>
