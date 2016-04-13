@@ -97,14 +97,7 @@ public class MainActivity extends AppCompatActivity {
             openIntent("about", -1);
             return true;
         }
-        if (id == R.id.action_show_all){
-            showNotification("Show all");
-            return true;
-        }
-        if (id == R.id.action_show_uncomplicted){
-            showNotification("Show uncompleted");
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }

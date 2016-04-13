@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
-import java.util.Objects;
 
 import io.github.maximgorbatyuk.taskmanager.database.ReadProject;
 import io.github.maximgorbatyuk.taskmanager.database.ReadProjectResult;
@@ -36,9 +34,6 @@ public class OpenActivity extends AppCompatActivity {
         Intent data = getIntent();
         if (data.hasExtra("id"))
             getTask(data.getStringExtra("id"));
-
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     }
 
     private void fillTask(Project project){
@@ -80,14 +75,14 @@ public class OpenActivity extends AppCompatActivity {
     @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
 
-        if (Objects.equals(data.getStringExtra("action"), "update")) {
-            if (resultCode == RESULT_OK) {
-                showNotification(getString(R.string.update_success));
-                getTask("" + TASK_ID);
-            }
+
+        if (data.hasExtra("difference")) {
+            long difference = Long.parseLong(data.getStringExtra("difference"));
+            showNotification("Difference is " + difference);
         }
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void showNotification(String text){
@@ -95,5 +90,7 @@ public class OpenActivity extends AppCompatActivity {
     }
 
     public void onPlayFabClick(View view) {
+        Intent intent = new Intent(this, CounterActivity.class);
+        startActivityForResult(intent, 2);
     }
 }

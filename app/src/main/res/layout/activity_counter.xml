@@ -38,6 +38,7 @@
             android:layout_height="wrap_content"
             android:text="Hello"
             android:textSize="36sp"
+            android:id="@+id/timerDisplay"
             android:textColor="@color/textMain"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
@@ -55,7 +56,10 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:textSize="20sp"
-            android:text="@string/button_start_timer"/>
+            android:text="@string/button_start_timer"
+            android:onClick="StartOrStopTimer"
+            android:id="@+id/startOrStop"
+            />
     </RelativeLayout>
 
 
