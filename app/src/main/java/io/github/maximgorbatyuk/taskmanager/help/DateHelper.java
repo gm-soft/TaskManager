@@ -6,6 +6,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Created by Maxim on 11.04.2016.
@@ -43,6 +44,12 @@ public class DateHelper {
         } catch (Exception ex){
             return "No date";
         }
+    }
+
+    public String getFormatDifference(long dif){
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+        format.setTimeZone(TimeZone.getTimeZone("England"));
+        return format.format(new Date(dif));
     }
 
 }

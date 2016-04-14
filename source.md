@@ -38,3 +38,9 @@
 
 ### Железо
 * [Вопрос](http://stackoverflow.com/questions/8094715/how-to-catch-event-with-hardware-back-button-on-android) об отслеживании нажатия хардварной кнопки Назад
+
+### Сервисы
+* [Урок](http://developer.alexanderklimov.ru/android/theory/intentservice.php) по сервисам (Alexanderklimov.ru)
+* [Урок - 2](http://developer.alexanderklimov.ru/android/theory/services-theory.php)  по сервисам (Alexanderklimov.ru)
+* Как [получить](http://stackoverflow.com/questions/18125241/how-to-get-data-from-service-to-activity) данные из сервиса в активити. Вопрос на СТаке, но не воспользовался
+* [Туториал](https://www.websmithing.com/2011/02/01/how-to-update-the-ui-in-an-android-activity-using-data-from-a-background-service/comment-page-1/#comment-734) о том, как получить данные из сервиса в активити. По нему организовал

@@ -13,14 +13,17 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import io.github.maximgorbatyuk.taskmanager.database.ExecuteResult;
 import io.github.maximgorbatyuk.taskmanager.database.ReadProject;
 import io.github.maximgorbatyuk.taskmanager.database.ReadProjectResult;
+import io.github.maximgorbatyuk.taskmanager.database.UpdateProject;
 import io.github.maximgorbatyuk.taskmanager.help.DateHelper;
 import io.github.maximgorbatyuk.taskmanager.help.Project;
 
 public class OpenActivity extends AppCompatActivity {
 
-    private int TASK_ID = -1;
+    private String TASK_ID = "";
+    private Project project;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +35,15 @@ public class OpenActivity extends AppCompatActivity {
 
 
         Intent data = getIntent();
-        if (data.hasExtra("id"))
-            getTask(data.getStringExtra("id"));
+        if (data.hasExtra("id")) {
+            TASK_ID = data.getStringExtra("id");
+            getTask(TASK_ID);
+        }
     }
 
     private void fillTask(Project project){
         try {
-            TASK_ID = project.getId();
+            //TASK_ID = project.getId();
 
             ((TextView) findViewById(R.id.openBody)).setText(
                     project.getBody());
@@ -53,6 +58,12 @@ public class OpenActivity extends AppCompatActivity {
             ((TextView) findViewById(R.id.openId)).setText("" + project.getId());
             ((CollapsingToolbarLayout)findViewById(R.id.toolbar_layout)).setTitle(project.getTitle());
 
+
+            ((TextView) findViewById(R.id.openSpentTime)).setText(
+                    new DateHelper().getFormatDifference(project.getMilliseconds()));
+
+            ((TextView) findViewById(R.id.openCosts)).setText(
+                    project.getCost() + "");
         }
         catch (Exception ex){
             showNotification(ex.getMessage());
@@ -62,9 +73,10 @@ public class OpenActivity extends AppCompatActivity {
     private void getTask(String id){
         new ReadProject(this, new ReadProjectResult() {
             @Override
-            public void processFinish(List<Project> project) {
-                if (project.size() > 0) {
-                    fillTask(project.get(0));
+            public void processFinish(List<Project> projects) {
+                if (projects.size() > 0) {
+                    project = projects.get(0);
+                    fillTask(project);
                 }
                 else
                     showNotification(getString(R.string.error_smth_goes_wrong));
@@ -76,10 +88,13 @@ public class OpenActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-
-        if (data.hasExtra("difference")) {
-            long difference = Long.parseLong(data.getStringExtra("difference"));
-            showNotification("Difference is " + difference);
+        if (data != null) {
+            if (data.hasExtra("difference")) {
+                long difference = Long.parseLong(data.getStringExtra("difference"));
+                if (difference > 0)
+                    addDifferenceToProject(difference);
+                //showNotification("Difference is " + difference);
+            }
         }
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -92,5 +107,18 @@ public class OpenActivity extends AppCompatActivity {
     public void onPlayFabClick(View view) {
         Intent intent = new Intent(this, CounterActivity.class);
         startActivityForResult(intent, 2);
+    }
+
+    private void addDifferenceToProject(long difference){
+        if (project != null){
+            project.setMilliseconds( project.getMilliseconds() + difference);
+            new UpdateProject(this, new ExecuteResult() {
+                @Override
+                public void processFinish(Boolean result) {
+                    showNotification(getString(result ? R.string.update_success : R.string.error_not_created_updated));
+                    if (result && !TASK_ID.isEmpty()) getTask(TASK_ID);
+                }
+            }).execute(project);
+        }
     }
 }

@@ -35,6 +35,7 @@ public class EditActivity extends AppCompatActivity {
     private Switch switchDone;
     private TextView createdAt;
     private TextView projectId;
+    private EditText projectCost;
     //-
     private Button insertUpdateButton;
     private Button removeTask;
@@ -56,6 +57,7 @@ public class EditActivity extends AppCompatActivity {
         switchDone      = (Switch)   findViewById(R.id.switch1);
         createdAt       = (TextView) findViewById(R.id.editCreatedAt);
         projectId       = (TextView) findViewById(R.id.editID);
+        projectCost     = (EditText) findViewById(R.id.editProjectCost);
 
         TextView desc = (TextView) findViewById(R.id.textViewEditDescribe);
 
@@ -126,6 +128,7 @@ public class EditActivity extends AppCompatActivity {
         switchDone.     setChecked( project.getIsDone() );
         createdAt.      setText(new DateHelper().dateToString( project.getCreatedAt() ));
         projectId.      setText(    "" + project.getId());
+        projectCost.    setText(    "" + project.getCost());
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
@@ -161,6 +164,10 @@ public class EditActivity extends AppCompatActivity {
         project.setCreatedAt(!createdAt.getText().toString().isEmpty()?
                 new DateHelper().parseDate(createdAt.getText().toString()) :
                 project.getCreatedAt());
+
+        project.setCost( !projectCost.getText().toString().isEmpty() ?
+                            Double.parseDouble(projectCost.getText().toString()) :
+                            0);
 
         return project;
     }

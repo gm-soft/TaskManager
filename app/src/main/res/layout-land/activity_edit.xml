@@ -12,141 +12,135 @@
     tools:context="io.github.maximgorbatyuk.taskmanager.EditActivity"
     android:gravity="top">
 
-    <LinearLayout
+    <GridLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="2"
+        android:orientation="horizontal"
+        android:useDefaultMargins="false">
+
+        <LinearLayout
+        android:layout_width="261dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:id="@+id/linearLayout"
         android:weightSum="1"
-        android:layout_above="@+id/editUpdateInsert">
-    <RelativeLayout 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewEditDescribe"
-        android:text="@string/edit_activity_create_desc"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-    
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/editID"
-            android:text="ID project"
-            android:visibility="visible"
-            android:layout_alignTop="@+id/textViewEditDescribe"
-            android:layout_alignRight="@+id/textViewEditDescribe"
-            android:layout_alignEnd="@+id/textViewEditDescribe"
-            android:layout_gravity="right" />
-    </RelativeLayout>
+            android:layout_row="1"
+            android:layout_column="0"
 
-        <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTaskTitle"
+            android:layout_columnSpan="2">
 
-        android:hint="@string/edit_title_hint"
-         />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editID"
+                android:text="ID project"
+                android:visibility="visible"
+                android:layout_gravity="right" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:id="@+id/editTaskBody"
-        android:hint="@string/edit_body_hint"
-        android:inputType="textMultiLine"
-        android:layout_weight="0.97" />
+            <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewEditDescribe"
+                android:text="@string/edit_activity_create_desc"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
-     <RelativeLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/edit_deadline_hint"
-            android:id="@+id/textViewDeadline"
-            android:textSize="18sp"
-            android:gravity="center"
-            android:onClick="showDeadlineDialog"
-            android:textColor="@color/textMain"
-            android:background="@android:drawable/dialog_holo_light_frame"
-            android:padding="15dp"
-            android:layout_toLeftOf="@+id/editClearDeadline"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-         <Button
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:id="@+id/editClearDeadline"
-             android:text="@string/edit_clear_deadline"
-             android:textSize="10sp"
-             android:layout_centerVertical="true"
-             android:layout_alignParentRight="true"
-             android:layout_alignParentEnd="true" />
-     </RelativeLayout>
 
-        <Switch
+        </RelativeLayout>
+
+            <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/edit_is_done_hint"
-            android:id="@+id/switch1"
+            android:id="@+id/editTaskTitle"
 
-            android:layout_below="@+id/textViewDeadline"
-            android:layout_alignLeft="@+id/editTaskBody"
-            android:layout_alignStart="@+id/editTaskBody"
-            android:layout_alignRight="@+id/editTaskBody"
-            android:layout_alignEnd="@+id/editTaskBody"
-            android:padding="10dp"
-            />
+            android:hint="@string/edit_title_hint"
+             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/editCreatedAt"
-            android:text="Created at"
-            android:layout_centerVertical="true"
-            android:layout_alignLeft="@+id/switch1"
-            android:layout_alignStart="@+id/switch1"
-            android:layout_alignRight="@+id/switch1"
-            android:layout_alignEnd="@+id/switch1" /><![CDATA[
-
-        />
-
-    ]]><!--Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_pick_datetime"
-        android:id="@+id/buttonDateTime"
-        android:layout_below="@+id/editTaskBody"
-        android:layout_toRightOf="@+id/textViewDeadline"
-        android:layout_toEndOf="@+id/textViewDeadline"
-        android:onClick="showDeadlineDialog"/-->
-    </LinearLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/create_task"
-        android:id="@+id/editUpdateInsert"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_remove_task"
-        android:id="@+id/buttonRemove"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/editTaskBody"
+            android:hint="@string/edit_body_hint"
+            android:inputType="textMultiLine" />
+</LinearLayout>
 
 
+        <LinearLayout
+            android:layout_width="283dp"
+            android:layout_height="match_parent"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/edit_deadline_hint"
+                    android:id="@+id/textViewDeadline"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:onClick="showDeadlineDialog"
+                    android:textColor="@color/textMain"
+                    android:background="@android:drawable/dialog_holo_light_frame"
+                    android:padding="15dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_toLeftOf="@+id/editClearDeadline"
+                    android:layout_toStartOf="@+id/editClearDeadline" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editClearDeadline"
+                    android:text="@string/edit_clear_deadline"
+                    android:textSize="10sp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
 
+            <EditText
+                android:hint="@string/project_cost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editProjectCost"
+                android:visibility="visible"
+                />
+
+            <Switch
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_is_done_hint"
+                android:id="@+id/switch1"
+                android:padding="10dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editCreatedAt" />
+
+            <Button
+                android:layout_width="168dp"
+                android:layout_height="wrap_content"
+                android:text="@string/create_task"
+                android:id="@+id/editUpdateInsert"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_remove_task"
+                android:id="@+id/buttonRemove" />
+
+        </LinearLayout>
+
+    </GridLayout>
 
 </RelativeLayout>

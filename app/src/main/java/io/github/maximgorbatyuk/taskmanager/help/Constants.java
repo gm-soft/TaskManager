@@ -5,6 +5,8 @@ package io.github.maximgorbatyuk.taskmanager.help;
  */
 public class Constants {
     public static final String LOG_TAG = "Project Manager";
+    public static final String BROADCAST_TIMER = "io.github.maximgorbatyuk.PROJECT_EXECUTION_TIMER";
+
     public static final String DATABASE_NAME       = "project_manager_database.db";
     public static final String TABLE_NAME          = "project_table";
     public static final String TITLE_COLUMN        = "project_title";

@@ -54,14 +54,23 @@
         android:hint="@string/edit_title_hint"
          />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:id="@+id/editTaskBody"
-        android:hint="@string/edit_body_hint"
-        android:inputType="textMultiLine"
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/editTaskBody"
+            android:hint="@string/edit_body_hint"
+            android:inputType="textMultiLine"
 
-        android:layout_weight="0.97" />
+            android:layout_weight="0.97" />
+
+        <EditText
+            android:hint="@string/project_cost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editProjectCost"
+            android:visibility="visible"
+            android:textAlignment="center"
+            />
 
      <RelativeLayout
          android:layout_width="match_parent"
@@ -95,6 +104,8 @@
              />
      </RelativeLayout>
 
+
+
         <Switch
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -102,6 +113,7 @@
             android:id="@+id/switch1"
             android:layout_marginTop="5dp"
             />
+
 
         <RelativeLayout
             android:layout_width="match_parent"
