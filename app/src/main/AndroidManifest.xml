@@ -25,7 +25,9 @@
             android:label="@string/action_settings" />
         <activity
             android:name=".EditActivity"
-            android:label="@string/create_task" />
+            android:label="@string/create_task"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".AboutActivity"
             android:label="@string/action_about" />
@@ -35,7 +37,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CounterActivity"
-            android:parentActivityName=".OpenActivity">
+            android:screenOrientation="portrait"
+            >
 
         </activity>
 

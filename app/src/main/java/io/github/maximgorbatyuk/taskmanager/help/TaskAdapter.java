@@ -11,6 +11,8 @@ import java.util.List;
 
 import io.github.maximgorbatyuk.taskmanager.R;
 
+import static android.support.v4.content.ContextCompat.getColorStateList;
+
 
 public class TaskAdapter extends ArrayAdapter<Project> {
 
@@ -33,6 +35,7 @@ public class TaskAdapter extends ArrayAdapter<Project> {
         TextView deadline   = (TextView) taskItem.findViewById(R.id.listItemDeadline);
         TextView id         = (TextView) taskItem.findViewById(R.id.listItemId);
         TextView createdAt  = (TextView) taskItem.findViewById(R.id.listItemCreatedAt);
+        TextView status     = (TextView) taskItem.findViewById(R.id.listItemDoneStatus);
 
         title.setText(      list.get(position).getTitle());
         body.setText(       list.get(position).getBody());
@@ -42,12 +45,12 @@ public class TaskAdapter extends ArrayAdapter<Project> {
 
         deadline.setText( deadline_str );
         //done.setChecked(    );
-        id.setText(         "" + list.get(position).getId());
+        id.setText(         String.valueOf( list.get(position).getId()));
         createdAt.setText(  new DateHelper().DateToShortString( list.get(position).getCreatedAt()));
 
-        if (list.get(position).getIsDone())
-            taskItem.setBackgroundResource(R.color.finishedColor);
 
+        status.setTextColor(getColorStateList(context, list.get(position).getIsDone() ? R.color.finishedColor : R.color.uncomplitedColor));
+        status.setText(list.get(position).getIsDone() ? R.string.context_done : R.string.in_process);
         return taskItem;
         //return super.getView(position, taskItem, parent);
     }

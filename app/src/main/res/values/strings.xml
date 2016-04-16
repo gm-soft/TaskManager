@@ -45,4 +45,15 @@
     <string name="spent_time">Spent time on the project</string>
     <string name="project_cost">Cost of the project</string>
     <string name="no_deadline">No deadline</string>
+    <string name="stat_hour_cost">Work hour cost</string>
+    <string name="stat_useful_hours">Useful time of working</string>
+    <string name="statistic">Statistic</string>
+    <string name="stat_days_count">Count of days</string>
+    <string name="stat_hour_count">Count of hours</string>
+    <string name="add_hours">Add hours</string>
+    <string name="add_one_hour" translatable="false">+</string>
+    <string name="minus_one_hour" translatable="false">-</string>
+    <string name="hours_of_execution">Hours of execution</string>
+    <string name="timer">Timer</string>
+    <string name="in_process">Perfomed</string>
 </resources>

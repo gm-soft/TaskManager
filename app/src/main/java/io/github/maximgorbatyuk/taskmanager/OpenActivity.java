@@ -11,7 +11,9 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import io.github.maximgorbatyuk.taskmanager.database.ExecuteResult;
 import io.github.maximgorbatyuk.taskmanager.database.ReadProject;
@@ -22,7 +24,7 @@ import io.github.maximgorbatyuk.taskmanager.help.Project;
 
 public class OpenActivity extends AppCompatActivity {
 
-    private String TASK_ID = "";
+    private String PROJECT_ID = "";
     private Project project;
 
     @Override
@@ -36,14 +38,14 @@ public class OpenActivity extends AppCompatActivity {
 
         Intent data = getIntent();
         if (data.hasExtra("id")) {
-            TASK_ID = data.getStringExtra("id");
-            getTask(TASK_ID);
+            PROJECT_ID = data.getStringExtra("id");
+            getProject(PROJECT_ID);
         }
     }
 
-    private void fillTask(Project project){
+    private void fillProject(Project project){
         try {
-            //TASK_ID = project.getId();
+            //PROJECT_ID = project.getId();
 
             ((TextView) findViewById(R.id.openBody)).setText(
                     project.getBody());
@@ -70,13 +72,14 @@ public class OpenActivity extends AppCompatActivity {
         }
     }
 
-    private void getTask(String id){
+    private void getProject(String id){
         new ReadProject(this, new ReadProjectResult() {
             @Override
             public void processFinish(List<Project> projects) {
                 if (projects.size() > 0) {
                     project = projects.get(0);
-                    fillTask(project);
+                    fillProject(project);
+                    fillStatistic(project);
                 }
                 else
                     showNotification(getString(R.string.error_smth_goes_wrong));
@@ -106,6 +109,8 @@ public class OpenActivity extends AppCompatActivity {
 
     public void onPlayFabClick(View view) {
         Intent intent = new Intent(this, CounterActivity.class);
+        String shortBody = project.getBody().length() > 30 ? project.getBody().substring(0, 30) + "..." : project.getBody();
+        intent.putExtra("project", project.getTitle() + "\n" + shortBody);
         startActivityForResult(intent, 2);
     }
 
@@ -116,9 +121,26 @@ public class OpenActivity extends AppCompatActivity {
                 @Override
                 public void processFinish(Boolean result) {
                     showNotification(getString(result ? R.string.update_success : R.string.error_not_created_updated));
-                    if (result && !TASK_ID.isEmpty()) getTask(TASK_ID);
+                    if (result && !PROJECT_ID.isEmpty()) getProject(PROJECT_ID);
                 }
             }).execute(project);
         }
+    }
+
+    private void fillStatistic(Project project){
+        //((TextView) findViewById(R.id.openBody))
+        long hours      = TimeUnit.MILLISECONDS.toHours(project.getMilliseconds());
+        double cost     = project.getCost() / hours;
+        long spentHours = TimeUnit.MILLISECONDS.toHours(new Date().getTime() - project.getCreatedAt().getTime());
+        long spentDays  = TimeUnit.MILLISECONDS.toDays(new Date().getTime() - project.getCreatedAt().getTime());
+        double usefulTimePercent = 0;
+        if (hours > 0)
+            usefulTimePercent = spentHours / hours;
+
+        //------------------------------
+        ((TextView) findViewById(R.id.statHourCost)).setText(cost + "");
+        ((TextView) findViewById(R.id.statKpd))     .setText(usefulTimePercent + "");
+        ((TextView) findViewById(R.id.statDaysCount)).setText(spentDays + "");
+        ((TextView) findViewById(R.id.statHoursCount)).setText(spentHours + "");
     }
 }

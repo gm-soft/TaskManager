@@ -23,6 +23,7 @@
 * [Подробно](http://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html)  форматировании даты и времени
 * [Проблема](http://stackoverflow.com/questions/20816701/java-current-date-time-displays-1-hour-ahead-that-original-time) о выведении 1 часа сверху над нулевым значением разницы между временами. То есть на 0 миллисекунд форматирование выдает на один час сверху (01). Связано с Часовыми поясами.
 * [Вопрос](http://stackoverflow.com/questions/5351483/calculate-date-time-difference-in-java) о вычислении часов, минут из значения миллисекунд
+* [Вопрос](http://stackoverflow.com/questions/625433/how-to-convert-milliseconds-to-x-mins-x-seconds-in-java) про дату/время, про вывод часов, минут из миллисекунд
 
 ### Интерфейс
 * [Снова](http://hmkcode.com/android-custom-listview-items-row/) про кастомные списки
@@ -31,6 +32,7 @@
 * [И уще разок](http://stackoverflow.com/questions/12567779/get-access-to-a-view-inside-each-row-of-listview) про выбор элемента в списке
 * [Урок](http://startandroid.ru/ru/uroki/vse-uroki-spiskom/81-urok-41-ispolzuem-layoutinflater-dlja-sozdanija-spiska.html) по Inflater
 *[Статья](https://guides.codepath.com/android/Using-the-App-ToolBar) про App ToolBar. Нужно почитать и изучать блее подробно. ПОка не применял на практике
+* [Вопрос](http://stackoverflow.com/questions/5976805/android-linearlayout-gradient-background) про добавление градиента в активити.
 
 ### Таймер
 * [Статья](http://developer.android.com/reference/java/util/Timer.html) про тайеры в Библии андроид-девелоперов

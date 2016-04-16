@@ -43,4 +43,13 @@
     <string name="no_deadline">Без срока</string>
     <string name="project_cost">Стоимость проекта</string>
     <string name="spent_time">Затраченное время</string>
+    <string name="stat_hour_cost">Стоимость часа работы</string>
+    <string name="stat_useful_hours">Эффективность затраченного времени </string>
+    <string name="statistic">Статистика проекта</string>
+    <string name="stat_days_count">Дней в разработке</string>
+    <string name="stat_hour_count">Часов в разработке</string>
+    <string name="hours_of_execution">Время выполнения</string>
+    <string name="add_hours">Добавить время</string>
+    <string name="timer">Таймер</string>
+    <string name="in_process">Выполняется</string>
 </resources>

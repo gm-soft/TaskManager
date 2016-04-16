@@ -209,7 +209,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        menu.add(0, DONE_TASK, 0, getString(R.string.context_done));
         menu.add(0, UPDATE_TASK, 0, getString(R.string.context_update));
         menu.add(0, REMOVE_TASK, 0, getString(R.string.context_remove));
         super.onCreateContextMenu(menu, v, menuInfo);

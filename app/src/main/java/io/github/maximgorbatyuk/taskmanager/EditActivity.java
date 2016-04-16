@@ -14,11 +14,12 @@ import android.widget.Toast;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
+import io.github.maximgorbatyuk.taskmanager.database.CreateProject;
 import io.github.maximgorbatyuk.taskmanager.database.ExecuteResult;
 import io.github.maximgorbatyuk.taskmanager.database.ReadProject;
 import io.github.maximgorbatyuk.taskmanager.database.ReadProjectResult;
-import io.github.maximgorbatyuk.taskmanager.database.CreateProject;
 import io.github.maximgorbatyuk.taskmanager.database.UpdateProject;
 import io.github.maximgorbatyuk.taskmanager.help.DateHelper;
 import io.github.maximgorbatyuk.taskmanager.help.DatePickerFragment;
@@ -36,6 +37,8 @@ public class EditActivity extends AppCompatActivity {
     private TextView createdAt;
     private TextView projectId;
     private EditText projectCost;
+    private EditText projectHours;
+    private TextView millisecondsCount;
     //-
     private Button insertUpdateButton;
     private Button removeTask;
@@ -58,6 +61,8 @@ public class EditActivity extends AppCompatActivity {
         createdAt       = (TextView) findViewById(R.id.editCreatedAt);
         projectId       = (TextView) findViewById(R.id.editID);
         projectCost     = (EditText) findViewById(R.id.editProjectCost);
+        projectHours    = (EditText) findViewById(R.id.editExecuteHour);
+        millisecondsCount = (TextView) findViewById(R.id.millisecondsCount);
 
         TextView desc = (TextView) findViewById(R.id.textViewEditDescribe);
 
@@ -127,8 +132,14 @@ public class EditActivity extends AppCompatActivity {
         textDeadline.   setText(new DateHelper().dateToString( project.getDeadline()) );
         switchDone.     setChecked( project.getIsDone() );
         createdAt.      setText(new DateHelper().dateToString( project.getCreatedAt() ));
-        projectId.      setText(    "" + project.getId());
-        projectCost.    setText(    "" + project.getCost());
+        projectId.      setText(    String.valueOf(project.getId()));
+        projectCost.    setText(    String.valueOf(project.getCost()));
+
+        long hours      = TimeUnit.MILLISECONDS.toHours(project.getMilliseconds());
+        projectHours.setText(String.valueOf( hours ));
+
+        long remain = project.getMilliseconds() - TimeUnit.HOURS.toMillis(hours);
+        millisecondsCount.setText(String.valueOf(remain));
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
@@ -169,8 +180,16 @@ public class EditActivity extends AppCompatActivity {
                             Double.parseDouble(projectCost.getText().toString()) :
                             0);
 
+        String ms = millisecondsCount.getText().toString();
+        long remain = ms.isEmpty() ? 0 : Long.parseLong(ms);
+        long hours  = projectHours.getText().toString().isEmpty() ? 0 : Long.parseLong( projectHours.getText().toString());
+
+        project.setMilliseconds (remain + TimeUnit.HOURS.toMillis( hours ));
+        //project.setMilliseconds( project.getMilliseconds() + HoursToMillisecinds( projectHours.getText().toString() ));
+
         return project;
     }
+
 
     private void GetProjectAndFillEdits(String id){
         new ReadProject(this, new ReadProjectResult() {
@@ -230,11 +249,23 @@ public class EditActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.putExtra("action", action);
 
+
         setResult(RESULT_OK, intent);
         finish();
     }
 
     public void clearDeadline(View view) {
         textDeadline.setText("");
+    }
+
+    public void plusHourToEdit(View view) {
+        int hours = !projectHours.getText().toString().isEmpty() ? Integer.parseInt( projectHours.getText().toString()) : 0;
+        projectHours.setText(String.valueOf( hours + 1) );
+
+    }
+
+    public void minusHourToEdit(View view) {
+        int hours = !projectHours.getText().toString().isEmpty() ? Integer.parseInt( projectHours.getText().toString()) : 0;
+        projectHours.setText(String.valueOf( hours-1 > 0 ? hours - 1 : 0) );
     }
 }

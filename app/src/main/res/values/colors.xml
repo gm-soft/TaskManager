@@ -2,8 +2,10 @@
 <resources>
     <color name="colorPrimary">#64b5f6</color>
     <color name="colorPrimaryDark">#311b92</color>
-    <color name="colorAccent">#ff5252</color>
+    <color name="colorAccent">#f44336</color>
     <color name="textMain">#212121</color>
     <color name="textSecondary">#424242</color>
-    <color name="finishedColor">#c8e6c9</color>
+    <color name="finishedColor">#1b5e20</color>
+    <color name="uncomplitedColor">#6a1b9a</color>
+    <color name="background">#eeeeee</color>
 </resources>

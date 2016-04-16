@@ -30,6 +30,12 @@ public class CounterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_counter);
 
+        Intent intent = getIntent();
+        ((TextView) findViewById(R.id.counterDescription)).setText(
+                intent.hasExtra("project") ? intent.getStringExtra("project") :
+                "No description"
+        );
+
         startOrStopButton = (Button) findViewById(R.id.startOrStop);
         timer = new Timer();
         //timerService = new Intent(this, TimerService.class);
@@ -83,6 +89,9 @@ public class CounterActivity extends AppCompatActivity {
     }
 
     private void sendDifferenceToParent(){
+        if (isTimerActive){
+            difference = counter != null ? counter.getDifference() : 0;
+        }
         Intent intent = new Intent();
         //difference = counter.getDifference();
         intent.putExtra("difference", difference + "");
