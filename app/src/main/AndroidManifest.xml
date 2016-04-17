@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.github.maximgorbatyuk.taskmanager">
+    package="io.github.maximgorbatyuk.taskmanager" >
 
     <application
         android:allowBackup="true"
@@ -8,11 +8,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="io.github.mximgorbatyuk.action.TASK_MANAGER" />
@@ -21,13 +21,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SettingsActivity"
-            android:label="@string/action_settings" />
-        <activity
             android:name=".EditActivity"
             android:label="@string/create_task"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AboutActivity"
             android:label="@string/action_about" />
@@ -37,17 +33,21 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CounterActivity"
-            android:screenOrientation="portrait"
-            >
-
+            android:screenOrientation="portrait" >
         </activity>
 
-        <!--service
+        <!--
+        service
             android:name=".services.TimerService"
             android:enabled="true"
             >
 
-        </service-->
+        </service
+        -->
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
     </application>
 
 </manifest>
