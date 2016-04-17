@@ -21,9 +21,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".SettingsActivity"
+            android:label="@string/action_settings" />
+        <activity
             android:name=".EditActivity"
             android:label="@string/create_task"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".AboutActivity"
             android:label="@string/action_about" />
@@ -33,17 +37,17 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CounterActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            >
 
-        <!--
-        service
+        </activity>
+
+        <!--service
             android:name=".services.TimerService"
             android:enabled="true"
             >
 
-        </service
-        -->
-
+        </service-->
     </application>
 
 </manifest>
