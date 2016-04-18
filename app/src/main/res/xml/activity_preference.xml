@@ -5,5 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+    <CheckBoxPreference
+        android:key="notif"
+        android:summary="Enable notifications"
+        android:title="Notifications">
+    </CheckBoxPreference>
+    <EditTextPreference
+        android:key="address"
+        android:summary="Address for notifications"
+        android:title="Address">
+    </EditTextPreference>
 
 </PreferenceScreen>

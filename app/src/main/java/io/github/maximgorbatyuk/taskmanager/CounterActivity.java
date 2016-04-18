@@ -38,37 +38,15 @@ public class CounterActivity extends AppCompatActivity {
 
         startOrStopButton = (Button) findViewById(R.id.startOrStop);
         timer = new Timer();
+        StartOrPauseTimer(startOrStopButton);
         //timerService = new Intent(this, TimerService.class);
     }
 
-    public void StartOrStopTimer(View view) {
+    public void StartOrPauseTimer(View view) {
         if (isTimerActive)
-        {
-            isTimerActive = false;
-            if (timer != null)
-                timer.cancel();
-            timer = null;
-            start = null;
-            if (counter != null)
-                //Toast.makeText(this, "Difference " + counter.getDifference(), Toast.LENGTH_LONG).show();
-                difference = counter.getDifference();
-            startOrStopButton.setText(getString(R.string.button_start_timer));
-            /*unregisterReceiver(receiver);
-            stopService(timerService);*/
-
-        }
+            stopTimer();
         else
-        {
-            isTimerActive = true;
-            start = new Date();
-            timer = new Timer();
-            counter = new SecondCounter(start);
-            timer.schedule(counter, 500, 1000);
-            /*registerReceiver(receiver, new IntentFilter(Constants.BROADCAST_TIMER));
-            startService(timerService);*/
-            startOrStopButton.setText(getString(R.string.button_stop_timer));
-        }
-        // here is start or stop timer processor
+            startTimer();
     }
 
     @Override
@@ -98,6 +76,46 @@ public class CounterActivity extends AppCompatActivity {
         setResult(RESULT_OK, intent);
     }
 
+    private void startTimer(){
+        isTimerActive = true;
+        start = new Date();
+        timer = new Timer();
+        counter = new SecondCounter(start, difference);
+        timer.schedule(counter, 500, 1000);
+            /*registerReceiver(receiver, new IntentFilter(Constants.BROADCAST_TIMER));
+            startService(timerService);*/
+        startOrStopButton.setText(getString(R.string.button_pause_timer));
+    }
+
+    private void stopTimer(){
+        isTimerActive = false;
+        if (timer != null)
+            timer.cancel();
+        timer = null;
+        start = null;
+        if (counter != null)
+            //Toast.makeText(this, "Difference " + counter.getDifference(), Toast.LENGTH_LONG).show();
+            difference = counter.getDifference();
+        startOrStopButton.setText(getString(R.string.button_start_timer));
+            /*unregisterReceiver(receiver);
+            stopService(timerService);*/
+    }
+
+
+    public void ResetTimerClick(View view) {
+        difference = 0;
+        if (isTimerActive)
+            counter.setStartDate(new Date());
+        else
+            ( (TextView) findViewById(R.id.timerDisplay) ).setText(new DateHelper().getFormatDifference(difference));
+    }
+
+    public void StopTimerClick(View view) {
+        stopTimer();
+        sendDifferenceToParent();
+        finish();
+    }
+
     /*private BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -115,13 +133,25 @@ public class CounterActivity extends AppCompatActivity {
 
         private Date start = null;
         private long difference = 0;
+        private long prevDifference = 0;
 
         public SecondCounter(Date start){  this.start = start; }
-        public long getDifference(){ return difference; }
+        public SecondCounter(Date start, long prevDifference){
+            this.start = start;
+            this.prevDifference = prevDifference;
+        }
+        public long getDifference(){
+            return difference;
+        }
+
+        public void setStartDate(Date start){
+            this.start = start;
+        }
 
         @Override
         public void run() {
             difference = new Date().getTime() - start.getTime();
+            difference += prevDifference;
             runOnUiThread(new Runnable(){
                 @Override
                 public void run() {
@@ -129,6 +159,8 @@ public class CounterActivity extends AppCompatActivity {
                 }
             });
         }
+
+
 
     }
 

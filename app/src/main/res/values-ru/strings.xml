@@ -52,4 +52,6 @@
     <string name="add_hours">Добавить время</string>
     <string name="timer">Таймер</string>
     <string name="in_process">Выполняется</string>
+    <string name="button_pause_timer">Приостановить</string>
+    <string name="button_reset_timer">Сбросить счетчик</string>
 </resources>

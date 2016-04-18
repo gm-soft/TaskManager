@@ -8,7 +8,7 @@
     <string name="create_task">Create a project</string>
     <string name="edit_task">Edit a project</string>
     <string name="action_about">About</string>
-    <string name="action_only_undone">Uncomplited projects</string>
+    <string name="action_only_undone">Uncompleted projects</string>
     <string name="action_show_all">Show all</string>
     <string name="edit_activity_create_desc">Create new project</string>
     <string name="edit_activity_update_task">Change active project and update it</string>
@@ -19,27 +19,27 @@
     <string name="button_pick_datetime">Tap to set deadline</string>
     <string name="button_remove_task">Remove the project</string>
     <string name="button_update_task">Save</string>
-    <string name="edit_is_done_hint">Is the project complited?</string>
+    <string name="edit_is_done_hint">Is the project completed?</string>
     <string name="error_not_created_updated">Ups, the project has not been saved</string>
     <string name="error_null_result">No projects in database</string>
-    <string name="error_empty_edits">A project couldn\'t be created without data</string>
+    <string name="error_empty_edits">A project could not be created without data</string>
     <string name="fill_no_title">No label</string>
     <string name="insert_success">Project has been created</string>
     <string name="update_success">Task has been updated</string>
-    <string name="context_done">Complited</string>
+    <string name="context_done">Completed</string>
     <string name="context_remove">Remove the project</string>
     <string name="context_update">Edit the project</string>
     <string name="edit_clear_deadline">Clear</string>
     <string name="openDeadline">Deadline is</string>
     <string name="open_created_at">Created at</string>
     <string name="open_is_done">Status of the project</string>
-    <string name="open_status">Complited</string>
-    <string name="open_status_not_done">Not complited</string>
+    <string name="open_status">Completed</string>
+    <string name="open_status_not_done">Not completed</string>
     <string name="title_activity_open" translatable="false">OpenActivity</string>
     <string name="error_smth_goes_wrong">Ups, something goes wrong</string>
     <string name="remove_success">Removed</string>
     <string name="button_start_timer">Start timer</string>
-    <string name="button_stop_timer">Stop timer</string>
+    <string name="button_stop_timer">Stop</string>
     <string name="edit_price">Costs</string>
     <string name="costs">Cost of the project</string>
     <string name="spent_time">Spent time on the project</string>
@@ -55,5 +55,7 @@
     <string name="minus_one_hour" translatable="false">-</string>
     <string name="hours_of_execution">Hours of execution</string>
     <string name="timer">Timer</string>
-    <string name="in_process">Perfomed</string>
+    <string name="in_process">Performed</string>
+    <string name="button_pause_timer">Pause</string>
+    <string name="button_reset_timer">Reset timer</string>
 </resources>
