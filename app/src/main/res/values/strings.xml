@@ -55,7 +55,13 @@
     <string name="minus_one_hour" translatable="false">-</string>
     <string name="hours_of_execution">Hours of execution</string>
     <string name="timer">Timer</string>
-    <string name="in_process">Performed</string>
+    <string name="in_process">In progress</string>
     <string name="button_pause_timer">Pause</string>
     <string name="button_reset_timer">Reset timer</string>
+    <string name="long_work_day">Work hours per day</string>
+    <string name="show_notifications">Enable notifications</string>
+    <string name="work_days_per_week">Work days per week</string>
+    <string name="notifications">Notifications</string>
+    <string name="work_hour">Work hours</string>
+    <string name="work_week">Work week</string>
 </resources>

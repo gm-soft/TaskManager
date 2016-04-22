@@ -6,14 +6,27 @@
     android:layout_height="match_parent"
     >
     <CheckBoxPreference
-        android:key="notif"
-        android:summary="Enable notifications"
-        android:title="Notifications">
-    </CheckBoxPreference>
-    <EditTextPreference
-        android:key="address"
-        android:summary="Address for notifications"
-        android:title="Address">
-    </EditTextPreference>
+        android:key="notifications"
+        android:summary="@string/show_notifications"
+        android:title="@string/notifications"
+
+        />
+
+    <io.github.maximgorbatyuk.taskmanager.help.IntEditTextPreference
+        android:key="work_hours"
+        android:summary="@string/long_work_day"
+        android:title="@string/work_hour"
+        android:numeric="integer"
+        android:maxLength="2"
+         />
+
+    <io.github.maximgorbatyuk.taskmanager.help.IntEditTextPreference
+        android:key="work_days"
+        android:summary="@string/work_days_per_week"
+        android:title="@string/work_week"
+        android:numeric="integer"
+        android:maxLength="2"
+        />
+
 
 </PreferenceScreen>

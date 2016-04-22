@@ -54,4 +54,10 @@
     <string name="in_process">Выполняется</string>
     <string name="button_pause_timer">Приостановить</string>
     <string name="button_reset_timer">Сбросить счетчик</string>
+    <string name="show_notifications">Показывать уведомления</string>
+    <string name="long_work_day">Длительность рабочего дня (часов)</string>
+    <string name="work_days_per_week">Количество рабочих дней в неделю</string>
+    <string name="notifications">Уведомления</string>
+    <string name="work_hour">Рабочий день</string>
+    <string name="work_week">Рабочая неделя</string>
 </resources>

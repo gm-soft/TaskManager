@@ -12,6 +12,9 @@
 ### Общее
 * [Статья](http://developer.android.com/intl/ru/training/basics/activity-lifecycle/starting.html) о жизненном цикле Активити
 
+### Ошибки
+* [Решение](http://stackoverflow.com/questions/3721358/preferenceactivity-save-value-as-integer/3755608#3755608) [вопроса](http://stackoverflow.com/questions/17844511/android-preferences-error-string-cannot-be-cast-to-int) об ошибке перевода типов в EditPreferences
+
 
 ### Дата и время
 * [Урок](http://startandroid.ru/ru/uroki/vse-uroki-spiskom/118-urok-59-dialogi-datepickerdialog)  о диалоговых окнах с датой/временем (Сейчас неактуален)
@@ -31,7 +34,7 @@
 * [И еще раз](http://stackoverflow.com/questions/4508979/android-listview-get-selected-item) про выбор элемента в списке
 * [И уще разок](http://stackoverflow.com/questions/12567779/get-access-to-a-view-inside-each-row-of-listview) про выбор элемента в списке
 * [Урок](http://startandroid.ru/ru/uroki/vse-uroki-spiskom/81-urok-41-ispolzuem-layoutinflater-dlja-sozdanija-spiska.html) по Inflater
-*[Статья](https://guides.codepath.com/android/Using-the-App-ToolBar) про App ToolBar. Нужно почитать и изучать блее подробно. ПОка не применял на практике
+* [Статья](https://guides.codepath.com/android/Using-the-App-ToolBar) про App ToolBar. Нужно почитать и изучать блее подробно. ПОка не применял на практике
 * [Вопрос](http://stackoverflow.com/questions/5976805/android-linearlayout-gradient-background) про добавление градиента в активити.
 
 ### Таймер
