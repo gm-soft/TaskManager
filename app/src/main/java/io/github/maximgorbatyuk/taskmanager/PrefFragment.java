@@ -25,7 +25,7 @@ public class PrefFragment extends PreferenceFragment {
         editWorkHours       = (IntEditTextPreference) findPreference("work_hours");
         editWorkDays        = (IntEditTextPreference) findPreference("work_days");
 
-        preferencesHelper = new PreferencesHelper(getActivity().getApplicationContext(), getPreferenceManager().getSharedPreferences());
+        preferencesHelper = new PreferencesHelper(getActivity().getApplicationContext());
         loadSettings();
     }
 

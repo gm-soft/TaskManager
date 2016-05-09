@@ -46,6 +46,8 @@ public class EditActivity extends AppCompatActivity {
     private String deadline = "";
     private String ACTION = "";
 
+    private DateHelper dateHelper = new DateHelper();
+
     @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -129,9 +131,9 @@ public class EditActivity extends AppCompatActivity {
     private void fillEdits(Project project){
         editTitle.      setText(    project.getTitle() );
         editBody.       setText(    project.getBody() );
-        textDeadline.   setText(new DateHelper().dateToString( project.getDeadline()) );
+        textDeadline.   setText(dateHelper.dateToString( project.getDeadline()) );
         switchDone.     setChecked( project.getIsDone() );
-        createdAt.      setText(new DateHelper().dateToString( project.getCreatedAt() ));
+        createdAt.      setText(dateHelper.dateToString( project.getCreatedAt() ));
         projectId.      setText(    String.valueOf(project.getId()));
         projectCost.    setText(    String.valueOf(project.getCost()));
 
@@ -168,12 +170,12 @@ public class EditActivity extends AppCompatActivity {
         project.setBody(editBody.getText().toString());
 
         project.setDeadline( !textDeadline.getText().toString().isEmpty() ?
-                new DateHelper().parseDate(textDeadline.getText().toString()) :
+                dateHelper.parseDate(textDeadline.getText().toString()) :
                 null);
 
         project.setIsDone(switchDone.isChecked());
         project.setCreatedAt(!createdAt.getText().toString().isEmpty()?
-                new DateHelper().parseDate(createdAt.getText().toString()) :
+                dateHelper.parseDate(createdAt.getText().toString()) :
                 project.getCreatedAt());
 
         project.setCost( !projectCost.getText().toString().isEmpty() ?

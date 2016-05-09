@@ -2,6 +2,7 @@ package io.github.maximgorbatyuk.taskmanager.help;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 /**
@@ -12,9 +13,9 @@ public class PreferencesHelper {
     Context context;
     SharedPreferences preferences;
 
-    public PreferencesHelper(Context context, SharedPreferences preferences) {
+    public PreferencesHelper(Context context) {
         this.context = context;
-        this.preferences = preferences;
+        this.preferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     public void SaveSettings(boolean notificationEnabled, int workHours, int workDays){

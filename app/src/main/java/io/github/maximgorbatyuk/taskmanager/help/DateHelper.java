@@ -1,5 +1,6 @@
 package io.github.maximgorbatyuk.taskmanager.help;
 
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.text.DateFormat;
@@ -13,7 +14,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class DateHelper {
 
-    public Date parseDate(String date){
+    @Nullable
+    public  Date parseDate(String date){
         try {
             DateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.ENGLISH);
             return format.parse(date);
@@ -27,8 +29,7 @@ public class DateHelper {
     public String dateToString(Date date){
         try {
             DateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.ENGLISH);
-            String result = format.format(date);
-            return result;
+            return format.format(date);
 
         } catch (Exception ex){
             Log.d(Constants.LOG_TAG, "Error while parsing date to str: " + ex.getMessage());
@@ -36,7 +37,7 @@ public class DateHelper {
         }
     }
 
-    public String DateToShortString(Date date){
+    public  String DateToShortString(Date date){
         try {
             DateFormat format = new SimpleDateFormat("dd.MM", Locale.ENGLISH);
             return format.format(date);
@@ -44,6 +45,10 @@ public class DateHelper {
         } catch (Exception ex){
             return "No date";
         }
+    }
+
+    public long TimeCount(long dif){
+        return TimeUnit.MILLISECONDS.toSeconds(dif);
     }
 
     public String getFormatDifference(long dif){
@@ -63,8 +68,7 @@ public class DateHelper {
         String mm = minutes < 10 ? "0" + minutes : "" + minutes;
         String ss = seconds < 10 ? "0" + seconds : "" + seconds;
 
-        String toReturn = hh + ":" + mm + ":" + ss;
-        return toReturn;
+        return hh + ":" + mm + ":" + ss;
     }
 
 

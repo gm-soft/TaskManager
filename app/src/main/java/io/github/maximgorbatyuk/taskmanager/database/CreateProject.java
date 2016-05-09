@@ -17,6 +17,7 @@ public class CreateProject extends AsyncTask<Project, Void, Boolean> {
 
     private ExecuteResult delegate;
     private DBHelper helper;
+    private DateHelper dateHelper = new DateHelper();
     //-------------------
 
     public CreateProject(Context context, ExecuteResult delegate){
@@ -33,8 +34,9 @@ public class CreateProject extends AsyncTask<Project, Void, Boolean> {
         values.put(Constants.TITLE_COLUMN,        project.getTitle());
         values.put(Constants.BODY_COLUMN,         project.getBody());
         values.put(Constants.IS_DONE_COLUMN,      project.getIsDone());
-        values.put(Constants.DEADLINE_COLUMN,     new DateHelper().dateToString(project.getDeadline()));
-        values.put(Constants.CREATED_AT_COLUMN,   new DateHelper().dateToString(project.getCreatedAt()));
+        new DateHelper();
+        values.put(Constants.DEADLINE_COLUMN,     dateHelper.dateToString(project.getDeadline()));
+        values.put(Constants.CREATED_AT_COLUMN,   dateHelper.dateToString(project.getCreatedAt()));
         values.put(Constants.COST_COLUMN,         project.getCost());
         values.put(Constants.SPENT_TIME_COLUMN,   project.getMilliseconds());
         SQLiteDatabase db = helper.getWritableDatabase();

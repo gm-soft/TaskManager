@@ -17,4 +17,6 @@ public class Constants {
     public static final String COST_COLUMN = "price";
     public static final String SPENT_TIME_COLUMN   = "spent_time";
     public static final int    DB_VERSION          = 4;
+    //------------
+    public static final int    NOTIFY_ID          = 04;
 }

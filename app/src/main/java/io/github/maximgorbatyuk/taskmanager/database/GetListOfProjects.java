@@ -22,6 +22,7 @@ public class GetListOfProjects extends AsyncTask<String, Void, List<Project>> {
     private Context context;
     private GetListOfProjectsResult delegate;
     private DBHelper helper;
+    private DateHelper dateHelper = new DateHelper();
     //-------------------
 
 
@@ -52,8 +53,8 @@ public class GetListOfProjects extends AsyncTask<String, Void, List<Project>> {
                     String idDoneStr = cursor.getString(cursor.getColumnIndex(Constants.IS_DONE_COLUMN));
                     project.setIsDone(
                             Integer.parseInt(idDoneStr) == 1   );
-                    project.setDeadline(   new DateHelper().parseDate(cursor.getString(cursor.getColumnIndex(Constants.DEADLINE_COLUMN))));
-                    project.setCreatedAt(  new DateHelper().parseDate(cursor.getString(cursor.getColumnIndex(Constants.CREATED_AT_COLUMN))));
+                    project.setDeadline(   dateHelper.parseDate(cursor.getString(cursor.getColumnIndex(Constants.DEADLINE_COLUMN))));
+                    project.setCreatedAt(  dateHelper.parseDate(cursor.getString(cursor.getColumnIndex(Constants.CREATED_AT_COLUMN))));
                     project.setCost(   Double.parseDouble(cursor.getString(cursor.getColumnIndex(Constants.COST_COLUMN))));
                     project.setMilliseconds( Long.parseLong(cursor.getString(cursor.getColumnIndex(Constants.SPENT_TIME_COLUMN))) );
                     list.add(project);

@@ -26,6 +26,7 @@ import io.github.maximgorbatyuk.taskmanager.database.GetListOfProjectsResult;
 import io.github.maximgorbatyuk.taskmanager.database.DestroyProject;
 import io.github.maximgorbatyuk.taskmanager.help.Project;
 import io.github.maximgorbatyuk.taskmanager.help.TaskAdapter;
+import io.github.maximgorbatyuk.taskmanager.services.NotificationHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -95,6 +96,12 @@ public class MainActivity extends AppCompatActivity {
         }
         if (id == R.id.action_about){
             openIntent("about", -1);
+            return true;
+        }
+
+        if (id == R.id.action_notification){
+            NotificationHelper helper = new NotificationHelper(getApplicationContext());
+            helper.showNotification();
             return true;
         }
 

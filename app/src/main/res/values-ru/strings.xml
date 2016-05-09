@@ -60,4 +60,5 @@
     <string name="notifications">Уведомления</string>
     <string name="work_hour">Рабочий день</string>
     <string name="work_week">Рабочая неделя</string>
+    <string name="default_notification_value">Менеджер проектов</string>
 </resources>

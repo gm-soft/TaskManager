@@ -13,6 +13,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import io.github.maximgorbatyuk.taskmanager.help.DateHelper;
+import io.github.maximgorbatyuk.taskmanager.services.NotificationHelper;
 
 public class CounterActivity extends AppCompatActivity {
 
@@ -21,6 +22,8 @@ public class CounterActivity extends AppCompatActivity {
     private Timer timer = null;
     private SecondCounter counter = null;
     private long difference = 0;
+    private NotificationHelper notificationHelper;
+    private DateHelper dateHelper = new DateHelper();
     //private Intent timerService;
 
     private Button startOrStopButton;
@@ -37,16 +40,19 @@ public class CounterActivity extends AppCompatActivity {
         );
 
         startOrStopButton = (Button) findViewById(R.id.startOrStop);
-        timer = new Timer();
         StartOrPauseTimer(startOrStopButton);
+        notificationHelper = new NotificationHelper(this);
+
         //timerService = new Intent(this, TimerService.class);
     }
 
     public void StartOrPauseTimer(View view) {
-        if (isTimerActive)
-            stopTimer();
-        else
+        if (isTimerActive) stopTimer();
+        else {
+
             startTimer();
+
+        }
     }
 
     @Override
@@ -67,9 +73,11 @@ public class CounterActivity extends AppCompatActivity {
     }
 
     private void sendDifferenceToParent(){
-        if (isTimerActive){
+        if (isTimerActive)
             difference = counter != null ? counter.getDifference() : 0;
-        }
+        if (timer != null)      timer.cancel();
+        if (counter != null)    counter.cancel();
+
         Intent intent = new Intent();
         //difference = counter.getDifference();
         intent.putExtra("difference", difference + "");
@@ -79,8 +87,13 @@ public class CounterActivity extends AppCompatActivity {
     private void startTimer(){
         isTimerActive = true;
         start = new Date();
+
+        counter = new SecondCounter();
+        counter.setData(start, difference);
+        counter.setActive(true);
+
         timer = new Timer();
-        counter = new SecondCounter(start, difference);
+        //counter.run();
         timer.schedule(counter, 500, 1000);
             /*registerReceiver(receiver, new IntentFilter(Constants.BROADCAST_TIMER));
             startService(timerService);*/
@@ -89,25 +102,26 @@ public class CounterActivity extends AppCompatActivity {
 
     private void stopTimer(){
         isTimerActive = false;
-        if (timer != null)
-            timer.cancel();
-        timer = null;
         start = null;
-        if (counter != null)
-            //Toast.makeText(this, "Difference " + counter.getDifference(), Toast.LENGTH_LONG).show();
-            difference = counter.getDifference();
+
+        timer.cancel();
+        counter.setActive(false);
+        counter.cancel();
+
+
+        difference = counter.getDifference();
         startOrStopButton.setText(getString(R.string.button_start_timer));
             /*unregisterReceiver(receiver);
             stopService(timerService);*/
+        counter = null;
+        timer = null;
     }
 
 
     public void ResetTimerClick(View view) {
         difference = 0;
-        if (isTimerActive)
-            counter.setStartDate(new Date());
-        else
-            ( (TextView) findViewById(R.id.timerDisplay) ).setText(new DateHelper().getFormatDifference(difference));
+        if (isTimerActive)  counter.setData(new Date(), 0);
+        else  ( (TextView) findViewById(R.id.timerDisplay) ).setText(new DateHelper().getFormatDifference(difference));
     }
 
     public void StopTimerClick(View view) {
@@ -134,34 +148,36 @@ public class CounterActivity extends AppCompatActivity {
         private Date start = null;
         private long difference = 0;
         private long prevDifference = 0;
+        private boolean isActive = false;
 
-        public SecondCounter(Date start){  this.start = start; }
-        public SecondCounter(Date start, long prevDifference){
-            this.start = start;
-            this.prevDifference = prevDifference;
-        }
         public long getDifference(){
             return difference;
         }
 
-        public void setStartDate(Date start){
+        public void setData(Date start, long prevDifference){
             this.start = start;
+            this.prevDifference = prevDifference;
         }
 
         @Override
         public void run() {
             difference = new Date().getTime() - start.getTime();
             difference += prevDifference;
-            runOnUiThread(new Runnable(){
+            runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    ( (TextView) findViewById(R.id.timerDisplay) ).setText(new DateHelper().getFormatDifference(difference));
-                }
-            });
+                    ((TextView) findViewById(R.id.timerDisplay)).setText(dateHelper.getFormatDifference(difference));
+                    if (dateHelper.TimeCount(difference) % 10 == 0 && isActive) {
+                        notificationHelper.showText("Here is a difference = " + (difference / 1000));
+                    }
+                    }
+                });
         }
 
 
-
+        public void setActive(boolean active) {
+            isActive = active;
+        }
     }
 
 

@@ -18,6 +18,7 @@ public class TaskAdapter extends ArrayAdapter<Project> {
 
     private List<Project> list;
     private Context context;
+    private DateHelper dateHelper = new DateHelper();
 
     public TaskAdapter(Context context, List<Project> list){
         super(context, R.layout.task_item, list);
@@ -41,12 +42,12 @@ public class TaskAdapter extends ArrayAdapter<Project> {
         body.setText(       list.get(position).getBody());
         String deadline_str = context.getString(R.string.no_deadline);
         if (list.get(position).getDeadline() != null)
-            deadline_str = new DateHelper().DateToShortString( list.get(position).getDeadline());
+            deadline_str = dateHelper.DateToShortString( list.get(position).getDeadline());
 
         deadline.setText( deadline_str );
         //done.setChecked(    );
         id.setText(         String.valueOf( list.get(position).getId()));
-        createdAt.setText(  new DateHelper().DateToShortString( list.get(position).getCreatedAt()));
+        createdAt.setText(  dateHelper.DateToShortString( list.get(position).getCreatedAt()));
 
 
         status.setTextColor(getColorStateList(context, list.get(position).getIsDone() ? R.color.finishedColor : R.color.uncomplitedColor));

@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -20,12 +21,14 @@ import io.github.maximgorbatyuk.taskmanager.database.ReadProject;
 import io.github.maximgorbatyuk.taskmanager.database.ReadProjectResult;
 import io.github.maximgorbatyuk.taskmanager.database.UpdateProject;
 import io.github.maximgorbatyuk.taskmanager.help.DateHelper;
+import io.github.maximgorbatyuk.taskmanager.help.PreferencesHelper;
 import io.github.maximgorbatyuk.taskmanager.help.Project;
 
 public class OpenActivity extends AppCompatActivity {
 
     private String PROJECT_ID = "";
     private Project project;
+    private DateHelper dateHelper = new DateHelper();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +51,14 @@ public class OpenActivity extends AppCompatActivity {
             //PROJECT_ID = project.getId();
 
             ((TextView) findViewById(R.id.openBody)).setText(
-                    project.getBody());
+                        project.getBody());
+
             ((TextView) findViewById(R.id.openDeadline)).setText(
-                    new DateHelper().dateToString( project.getDeadline()));
+                    dateHelper.dateToString( project.getDeadline()));
+
             ((TextView) findViewById(R.id.openCreatedAt)).setText(
-                    new DateHelper().dateToString( project.getCreatedAt() ));
+                    dateHelper.dateToString( project.getCreatedAt() ));
+
             ((TextView) findViewById(R.id.openStatus)).setText(
                     project.getIsDone() ?
                             getString(R.string.open_status) :
@@ -62,7 +68,7 @@ public class OpenActivity extends AppCompatActivity {
 
 
             ((TextView) findViewById(R.id.openSpentTime)).setText(
-                    new DateHelper().getFormatDifference(project.getMilliseconds()));
+                    dateHelper.getFormatDifference(project.getMilliseconds()));
 
             ((TextView) findViewById(R.id.openCosts)).setText(
                     project.getCost() + "");
@@ -129,11 +135,14 @@ public class OpenActivity extends AppCompatActivity {
 
     private void fillStatistic(Project project){
         //((TextView) findViewById(R.id.openBody))
-        long hours      = TimeUnit.MILLISECONDS.toHours(project.getMilliseconds());
-        double cost     = project.getCost() / hours;
-        long spentHours = TimeUnit.MILLISECONDS.toHours(new Date().getTime() - project.getCreatedAt().getTime());
-        long spentDays  = TimeUnit.MILLISECONDS.toDays(new Date().getTime() - project.getCreatedAt().getTime());
+        long spentHours     = TimeUnit.MILLISECONDS.toHours(project.getMilliseconds());
+        double cost         = spentHours > 0 ? project.getCost() / spentHours : 0;
+        long hours          = TimeUnit.MILLISECONDS.toHours(new Date().getTime() - project.getCreatedAt().getTime());
+        long spentDays      = TimeUnit.MILLISECONDS.toDays(new Date().getTime() - project.getCreatedAt().getTime());
         double usefulTimePercent = 0;
+        PreferencesHelper preferencesHelper = new PreferencesHelper(getApplicationContext());
+        usefulTimePercent = spentHours / preferencesHelper.getWorkHours();
+
         if (hours > 0)
             usefulTimePercent = spentHours / hours;
 

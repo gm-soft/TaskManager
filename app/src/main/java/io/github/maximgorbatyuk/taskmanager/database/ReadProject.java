@@ -20,6 +20,7 @@ public class ReadProject extends AsyncTask<String, Void, List<Project>> {
 
     private ReadProjectResult delegate;
     private DBHelper helper;
+    private DateHelper dateHelper = new DateHelper();
     //-------------------
 
 
@@ -58,11 +59,11 @@ public class ReadProject extends AsyncTask<String, Void, List<Project>> {
                     project.setIsDone(
                             Integer.parseInt(idDoneStr) == 1   );
                     project.setDeadline(
-                            new DateHelper().parseDate(cursor.getString(cursor.getColumnIndex(Constants.DEADLINE_COLUMN))));
+                            dateHelper.parseDate(cursor.getString(cursor.getColumnIndex(Constants.DEADLINE_COLUMN))));
 
                     String date = cursor.getString(cursor.getColumnIndex(Constants.CREATED_AT_COLUMN));
                     project.setCreatedAt(
-                            new DateHelper().parseDate(date));
+                            dateHelper.parseDate(date));
                     project.setCost(
                             Double.parseDouble(cursor.getString(cursor.getColumnIndex(Constants.COST_COLUMN))));
                     project.setMilliseconds(
