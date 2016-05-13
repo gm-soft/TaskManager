@@ -10,43 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a523ee8-1d52-40c5-881d-c62341104342" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/database/Database.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/database/GetListOfProjectsResult.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/database/ReadProjectResult.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/CounterActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/CounterActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/EditActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/EditActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/OpenActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/OpenActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/PrefFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/PrefFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/database/CreateProject.java" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/database/CreateProject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/database/DBHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/database/DBHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/database/DestroyProject.java" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/database/DestroyProject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/database/GetListOfProjects.java" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/database/GetListOfProjects.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/database/ReadProject.java" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/database/ReadProject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/database/UpdateProject.java" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/database/UpdateProject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/services/NotificationHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/services/NotificationHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/services/TimerService.java" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/services/TimerService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/xml/activity_preference.xml" afterPath="$PROJECT_DIR$/app/src/main/res/xml/activity_preference.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/database/ExecuteResult.java" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/database/IExecuteResult.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/help/Constants.java" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/helpers/Constants.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/help/DateHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/helpers/DateHelper.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/help/DatePickerFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/helpers/DatePickerFragment.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/help/DateTimeInterface.java" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/helpers/DateTimeInterface.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/help/IntEditTextPreference.java" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/helpers/IntEditTextPreference.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/help/PreferencesHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/helpers/PreferencesHelper.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/help/Project.java" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/Essential/Project.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/help/TaskAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/Essential/TaskAdapter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/help/TimePickerFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/helpers/TimePickerFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
     </list>
     <ignored path="TaskManager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -156,7 +126,7 @@
       <file leaf-file-name="DateHelper.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/helpers/DateHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.3297491">
+            <state vertical-scroll-proportion="-0.7921147">
               <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
               <folding />
             </state>
@@ -187,20 +157,6 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="27" column="77" selection-start-line="27" selection-start-column="77" selection-end-line="27" selection-end-column="77" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Database.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/database/Database.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="50" column="61" selection-start-line="50" selection-start-column="61" selection-end-line="50" selection-end-column="61" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#452#453#0" expanded="true" />
-                <element signature="e#503#504#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -1553,7 +1509,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4384429950434" />
+        <entry key="$PROJECT_DIR$" value="4386166429903" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1845,6 +1801,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/database/Database.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/EditActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/OpenActivity.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
       </list>
     </option>
   </component>
@@ -1912,15 +1869,9 @@
               <option name="myItemId" value="TaskManager" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="TaskManager" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+              <option name="myItemId" value="Gradle Scripts" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1931,94 +1882,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TaskManager" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="taskmanager" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TaskManager" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="taskmanager" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="helpers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TaskManager" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="taskmanager" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Essential" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TaskManager" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="taskmanager" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -2783,9 +2646,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39426523">
+          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/io/github/maximgorbatyuk/taskmanager/helpers/DateHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3297491">
+        <state vertical-scroll-proportion="-0.7921147">
           <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
           <folding />
         </state>
