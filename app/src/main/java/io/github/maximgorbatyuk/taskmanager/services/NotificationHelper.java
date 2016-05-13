@@ -6,11 +6,10 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.provider.Settings;
 
 import io.github.maximgorbatyuk.taskmanager.MainActivity;
 import io.github.maximgorbatyuk.taskmanager.R;
-import io.github.maximgorbatyuk.taskmanager.help.Constants;
+import io.github.maximgorbatyuk.taskmanager.helpers.Constants;
 
 /**
  * Created by Maxim on 23.04.2016.

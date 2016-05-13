@@ -3,7 +3,7 @@ package io.github.maximgorbatyuk.taskmanager.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import io.github.maximgorbatyuk.taskmanager.help.Constants;
+import io.github.maximgorbatyuk.taskmanager.helpers.Constants;
 
 /**
  * Created by Maxim on 09.04.2016.

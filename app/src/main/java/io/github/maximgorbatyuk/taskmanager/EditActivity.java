@@ -16,19 +16,16 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-import io.github.maximgorbatyuk.taskmanager.database.CreateProject;
-import io.github.maximgorbatyuk.taskmanager.database.ExecuteResult;
-import io.github.maximgorbatyuk.taskmanager.database.ReadProject;
-import io.github.maximgorbatyuk.taskmanager.database.ReadProjectResult;
-import io.github.maximgorbatyuk.taskmanager.database.UpdateProject;
-import io.github.maximgorbatyuk.taskmanager.help.DateHelper;
-import io.github.maximgorbatyuk.taskmanager.help.DatePickerFragment;
-import io.github.maximgorbatyuk.taskmanager.help.DateTimeInterface;
-import io.github.maximgorbatyuk.taskmanager.help.Project;
-import io.github.maximgorbatyuk.taskmanager.help.TimePickerFragment;
+import io.github.maximgorbatyuk.taskmanager.database.Database;
+import io.github.maximgorbatyuk.taskmanager.database.IExecuteResult;
+import io.github.maximgorbatyuk.taskmanager.helpers.DateHelper;
+import io.github.maximgorbatyuk.taskmanager.helpers.DatePickerFragment;
+import io.github.maximgorbatyuk.taskmanager.helpers.DateTimeInterface;
+import io.github.maximgorbatyuk.taskmanager.Essential.Project;
+import io.github.maximgorbatyuk.taskmanager.helpers.TimePickerFragment;
 
 
-public class EditActivity extends AppCompatActivity {
+public class EditActivity extends AppCompatActivity implements IExecuteResult{
 
     private EditText editTitle;
     private EditText editBody;
@@ -47,6 +44,7 @@ public class EditActivity extends AppCompatActivity {
     private String ACTION = "";
 
     private DateHelper dateHelper = new DateHelper();
+    private Database database;
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
@@ -70,6 +68,9 @@ public class EditActivity extends AppCompatActivity {
 
         insertUpdateButton = (Button) findViewById(R.id.editUpdateInsert);
         removeTask      = (Button)   findViewById(R.id.buttonRemove);
+
+        database = new Database(this);
+
         if (Objects.equals(ACTION, "create")){
             insertUpdateButton.setText(getString(R.string.button_create_task));
             insertUpdateButton.setOnClickListener(new View.OnClickListener() {
@@ -194,19 +195,7 @@ public class EditActivity extends AppCompatActivity {
 
 
     private void GetProjectAndFillEdits(String id){
-        new ReadProject(this, new ReadProjectResult() {
-            @Override
-            public void processFinish(List<Project> project) {
-                if (project.size() > 0)
-                    try {
-                        fillEdits(project.get(0));
-                    } catch (Exception ex){
-                        showNotification(ex.getMessage());
-                    }
-                else
-                    showNotification(getString(R.string.error_null_result));
-            }
-        }).execute("one", id);
+        database.getProject(new String[] {"one", id}, this);
     }
 
     private void showNotification(String text){
@@ -216,35 +205,13 @@ public class EditActivity extends AppCompatActivity {
 
 
     private void insertTaskToDatabase(Project project){
-        if (project != null) {
-            new CreateProject(getApplicationContext(), new ExecuteResult() {
-                @Override
-                public void processFinish(Boolean result) {
-                    if (result)
-                        createResultIntent("create");
-                    else
-                        showNotification(getString(R.string.error_not_created_updated));
-                }
-            }).execute(project);
-        }
-        else
-            showNotification(getString(R.string.error_empty_edits));
+        if (project != null) database.createProject(project, this);
+        else showNotification(getString(R.string.error_empty_edits));
     }
 
     private void updateTaskInDatabase(Project project){
-        if (project != null) {
-            new UpdateProject(getApplicationContext(), new ExecuteResult() {
-                @Override
-                public void processFinish(Boolean result) {
-                    if (result)
-                        createResultIntent("update");
-                    else
-                        showNotification(getString(R.string.error_not_created_updated));
-                }
-            }).execute(project);
-        }
-        else
-            showNotification(getString(R.string.error_empty_edits));
+        if (project != null) database.updateProject(project, this);
+        else showNotification(getString(R.string.error_empty_edits));
     }
 
     private void createResultIntent(String action){
@@ -269,5 +236,25 @@ public class EditActivity extends AppCompatActivity {
     public void minusHourToEdit(View view) {
         int hours = !projectHours.getText().toString().isEmpty() ? Integer.parseInt( projectHours.getText().toString()) : 0;
         projectHours.setText(String.valueOf( hours-1 > 0 ? hours - 1 : 0) );
+    }
+
+    @Override
+    public void onExecute(Boolean result) {
+        if (result) {
+            if (ACTION == "update")
+                createResultIntent("update");
+            else
+                createResultIntent("create");
+        }
+        else
+            showNotification(getString(R.string.error_not_created_updated));
+    }
+
+    @Override
+    public void onExecute(List<Project> list) {
+        if (list.size() > 0)
+            fillEdits(list.get(0));
+        else
+            showNotification(getString(R.string.error_null_result));
     }
 }

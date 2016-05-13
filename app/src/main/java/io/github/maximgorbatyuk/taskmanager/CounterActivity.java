@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import io.github.maximgorbatyuk.taskmanager.help.DateHelper;
+import io.github.maximgorbatyuk.taskmanager.helpers.DateHelper;
 import io.github.maximgorbatyuk.taskmanager.services.NotificationHelper;
 
 public class CounterActivity extends AppCompatActivity {

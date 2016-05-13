@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -20,15 +21,13 @@ import android.widget.Toast;
 import java.util.List;
 import java.util.Objects;
 
-import io.github.maximgorbatyuk.taskmanager.database.ExecuteResult;
-import io.github.maximgorbatyuk.taskmanager.database.GetListOfProjects;
-import io.github.maximgorbatyuk.taskmanager.database.GetListOfProjectsResult;
-import io.github.maximgorbatyuk.taskmanager.database.DestroyProject;
-import io.github.maximgorbatyuk.taskmanager.help.Project;
-import io.github.maximgorbatyuk.taskmanager.help.TaskAdapter;
+import io.github.maximgorbatyuk.taskmanager.database.Database;
+import io.github.maximgorbatyuk.taskmanager.database.IExecuteResult;
+import io.github.maximgorbatyuk.taskmanager.Essential.Project;
+import io.github.maximgorbatyuk.taskmanager.Essential.TaskAdapter;
 import io.github.maximgorbatyuk.taskmanager.services.NotificationHelper;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements IExecuteResult{
 
     private boolean SHOW_ALL = true;
     private ListView listView;
@@ -40,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private int REMOVE_TASK = 2;
     private TaskAdapter adapter;
 
+    private Database database;
 
 
 
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        database = new Database(this);
         listView = (ListView) findViewById(R.id.listTasks);
 
 
@@ -150,12 +150,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getTasksList(){
-        new GetListOfProjects(this, new GetListOfProjectsResult() {
-            @Override
-            public void processFinish(List<Project> list) {
-                fillListByTasks(list);
-            }
-        }).execute();
+        database.getListOfProjects(this);
     }
 
     private void fillListByTasks(List<Project> source){
@@ -222,20 +217,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void removeTask(int id){
-        new DestroyProject(this, new ExecuteResult() {
-            @Override
-            public void processFinish(Boolean result) {
-                if (result) {
-                    showNotification(getString(R.string.remove_success));
-                    getTasksList();
-                }
-                else
-                    showNotification(getString(R.string.error_smth_goes_wrong));
-            }
-        }).execute(id);
+        database.destroyProject(id, this);
     }
 
     public void onFabClick(View view) {
         openIntent("create", -1);
+    }
+
+    @Override
+    public void onExecute(Boolean result) {
+        if (result) {
+            showNotification(getString(R.string.remove_success));
+            getTasksList();
+        }
+        else
+            showNotification(getString(R.string.error_smth_goes_wrong));
+    }
+
+    @Override
+    public void onExecute(List<Project> list) {
+        fillListByTasks(list);
     }
 }

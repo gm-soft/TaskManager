@@ -1,6 +1,5 @@
 package io.github.maximgorbatyuk.taskmanager.database;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
@@ -9,40 +8,35 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.maximgorbatyuk.taskmanager.help.Constants;
-import io.github.maximgorbatyuk.taskmanager.help.DateHelper;
-import io.github.maximgorbatyuk.taskmanager.help.Project;
+import io.github.maximgorbatyuk.taskmanager.Essential.Project;
+import io.github.maximgorbatyuk.taskmanager.helpers.Constants;
+import io.github.maximgorbatyuk.taskmanager.helpers.DateHelper;
 
 /**
- * Created by Maxim on 09.04.2016.
+ * Created by Maxim on 13.05.2016.
  */
-public class GetListOfProjects extends AsyncTask<String, Void, List<Project>> {
+class GetListOfProjects extends AsyncTask<String, Void, List<Project>> {
 
-
-    private Context context;
-    private GetListOfProjectsResult delegate;
     private DBHelper helper;
-    private DateHelper dateHelper = new DateHelper();
-    //-------------------
+    private IExecuteResult delegate;
+    private DateHelper dateHelper;
 
-
-
-    public GetListOfProjects(Context context, GetListOfProjectsResult delegate){
-        this.context = context;
+    GetListOfProjects(DBHelper helper, IExecuteResult delegate){
+        this.helper = helper;
         this.delegate = delegate;
-        helper = new DBHelper(context);
+        dateHelper = new DateHelper();
     }
-
 
     @Override
     protected List<Project> doInBackground(String... params) {
         List<Project> list = new ArrayList<>(0);
 
         SQLiteDatabase db = helper.getReadableDatabase();
-        db.beginTransaction();
+
 
         Cursor cursor = null;
         try{
+            db.beginTransaction();
             cursor = db.query(Constants.TABLE_NAME, null, null, null, null, null, Constants.DEADLINE_COLUMN);
             if (cursor.moveToFirst()){
                 do {
@@ -59,7 +53,7 @@ public class GetListOfProjects extends AsyncTask<String, Void, List<Project>> {
                     project.setMilliseconds( Long.parseLong(cursor.getString(cursor.getColumnIndex(Constants.SPENT_TIME_COLUMN))) );
                     list.add(project);
                 } while (cursor.moveToNext());
-            db.setTransactionSuccessful();
+                db.setTransactionSuccessful();
             }
         } catch (Exception ex){
             Log.d(Constants.LOG_TAG, ex.getMessage());
@@ -77,8 +71,6 @@ public class GetListOfProjects extends AsyncTask<String, Void, List<Project>> {
     @Override
     protected void onPostExecute(List<Project> projects) {
         super.onPostExecute(projects);
-        delegate.processFinish(projects);
+        delegate.onExecute(projects);
     }
-
-
 }

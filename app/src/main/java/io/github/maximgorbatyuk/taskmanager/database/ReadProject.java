@@ -1,6 +1,5 @@
 package io.github.maximgorbatyuk.taskmanager.database;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
@@ -9,24 +8,23 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.maximgorbatyuk.taskmanager.help.Constants;
-import io.github.maximgorbatyuk.taskmanager.help.DateHelper;
-import io.github.maximgorbatyuk.taskmanager.help.Project;
+import io.github.maximgorbatyuk.taskmanager.Essential.Project;
+import io.github.maximgorbatyuk.taskmanager.helpers.Constants;
+import io.github.maximgorbatyuk.taskmanager.helpers.DateHelper;
 
 /**
- * Created by Maxim on 09.04.2016.
+ * Created by Maxim on 13.05.2016.
  */
-public class ReadProject extends AsyncTask<String, Void, List<Project>> {
+class ReadProject extends AsyncTask<String, Void, List<Project>> {
 
-    private ReadProjectResult delegate;
     private DBHelper helper;
-    private DateHelper dateHelper = new DateHelper();
-    //-------------------
+    private IExecuteResult delegate;
+    private DateHelper dateHelper;
 
-
-    public ReadProject(Context context, ReadProjectResult delegate){
+    ReadProject(DBHelper helper, IExecuteResult delegate){
+        this.helper = helper;
         this.delegate = delegate;
-        this.helper = new DBHelper(context);
+        dateHelper = new DateHelper();
     }
 
     @Override
@@ -43,8 +41,9 @@ public class ReadProject extends AsyncTask<String, Void, List<Project>> {
         Log.d(Constants.LOG_TAG, "Query in ReadProject: " + query);
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor cursor = null;
-        db.beginTransaction();
+
         try {
+            db.beginTransaction();
             cursor = db.rawQuery(query, null);
             if (cursor.moveToFirst()){
                 do {
@@ -82,15 +81,12 @@ public class ReadProject extends AsyncTask<String, Void, List<Project>> {
             db.endTransaction();
             db.close();
         }
-
         return list;
     }
 
     @Override
     protected void onPostExecute(List<Project> project) {
         super.onPostExecute(project);
-        delegate.processFinish(project);
+        delegate.onExecute(project);
     }
-
-
 }

@@ -1,37 +1,33 @@
 package io.github.maximgorbatyuk.taskmanager.database;
 
-import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import io.github.maximgorbatyuk.taskmanager.help.Constants;
+import io.github.maximgorbatyuk.taskmanager.Essential.Project;
+import io.github.maximgorbatyuk.taskmanager.helpers.Constants;
 
 /**
- * Created by Maxim on 09.04.2016.
+ * Created by Maxim on 13.05.2016.
  */
-public class DestroyProject extends AsyncTask<Integer, Void, Boolean> {
+ class DestroyProject extends AsyncTask<Integer, Void, Boolean> {
 
-
-    private ExecuteResult delegate;
     private DBHelper helper;
-    //-------------------
+    private IExecuteResult delegate;
 
-
-    public DestroyProject(Context context, ExecuteResult delegate){
+    DestroyProject(DBHelper helper, IExecuteResult delegate){
+        this.helper = helper;
         this.delegate = delegate;
-        this.helper = new DBHelper(context);
     }
-
 
     @Override
     protected Boolean doInBackground(Integer... params) {
         int count = -1;
-
         String args = "id = " + params[0];
         SQLiteDatabase db = helper.getWritableDatabase();
-        db.beginTransaction();
+
         try {
+            db.beginTransaction();
             count = db.delete(Constants.TABLE_NAME, args, null);
             db.setTransactionSuccessful();
         } catch (Exception ex){
@@ -49,6 +45,6 @@ public class DestroyProject extends AsyncTask<Integer, Void, Boolean> {
     @Override
     protected void onPostExecute(Boolean aBoolean) {
         super.onPostExecute(aBoolean);
-        delegate.processFinish(aBoolean);
+        delegate.onExecute(aBoolean);
     }
 }

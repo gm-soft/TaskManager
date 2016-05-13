@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.PreferenceFragment;
 
-import io.github.maximgorbatyuk.taskmanager.help.IntEditTextPreference;
-import io.github.maximgorbatyuk.taskmanager.help.PreferencesHelper;
+import io.github.maximgorbatyuk.taskmanager.helpers.IntEditTextPreference;
+import io.github.maximgorbatyuk.taskmanager.helpers.PreferencesHelper;
 
 public class PrefFragment extends PreferenceFragment {
 

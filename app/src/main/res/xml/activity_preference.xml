@@ -12,7 +12,7 @@
 
         />
 
-    <io.github.maximgorbatyuk.taskmanager.help.IntEditTextPreference
+    <io.github.maximgorbatyuk.taskmanager.helpers.IntEditTextPreference
         android:key="work_hours"
         android:summary="@string/long_work_day"
         android:title="@string/work_hour"
@@ -20,7 +20,7 @@
         android:maxLength="2"
          />
 
-    <io.github.maximgorbatyuk.taskmanager.help.IntEditTextPreference
+    <io.github.maximgorbatyuk.taskmanager.helpers.IntEditTextPreference
         android:key="work_days"
         android:summary="@string/work_days_per_week"
         android:title="@string/work_week"

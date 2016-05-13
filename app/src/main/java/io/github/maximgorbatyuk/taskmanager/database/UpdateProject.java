@@ -6,23 +6,23 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import io.github.maximgorbatyuk.taskmanager.help.Constants;
-import io.github.maximgorbatyuk.taskmanager.help.DateHelper;
-import io.github.maximgorbatyuk.taskmanager.help.Project;
+import io.github.maximgorbatyuk.taskmanager.Essential.Project;
+import io.github.maximgorbatyuk.taskmanager.helpers.Constants;
+import io.github.maximgorbatyuk.taskmanager.helpers.DateHelper;
 
 /**
- * Created by Maxim on 09.04.2016.
+ * Created by Maxim on 13.05.2016.
  */
-public class UpdateProject extends AsyncTask<Project, Void, Boolean> {
+class UpdateProject extends AsyncTask<Project, Void, Boolean> {
 
-    private ExecuteResult delegate;
+    private IExecuteResult delegate;
     private DBHelper helper;
     private DateHelper dateHelper = new DateHelper();
     //-------------------
 
-    public UpdateProject(Context context, ExecuteResult delegate){
+    public UpdateProject(DBHelper helper, IExecuteResult delegate){
         this.delegate = delegate;
-        this.helper = new DBHelper(context);
+        this.helper = helper;
     }
 
     @Override
@@ -31,17 +31,11 @@ public class UpdateProject extends AsyncTask<Project, Void, Boolean> {
         Project project = params[0];
         String id = "" + project.getId();
         //
-        ContentValues values = new ContentValues();
-        values.put(Constants.TITLE_COLUMN,        project.getTitle());
-        values.put(Constants.BODY_COLUMN,         project.getBody());
-        values.put(Constants.IS_DONE_COLUMN,      project.getIsDone());
-        values.put(Constants.DEADLINE_COLUMN,     dateHelper.dateToString( project.getDeadline() ));
-        values.put(Constants.CREATED_AT_COLUMN,   dateHelper.dateToString(project.getCreatedAt() ));
-        values.put(Constants.COST_COLUMN,         project.getCost());
-        values.put(Constants.SPENT_TIME_COLUMN,   project.getMilliseconds());
+        ContentValues values = Database.getContentValues(project);
         SQLiteDatabase db = helper.getWritableDatabase();
-        db.beginTransaction();
-        try{
+
+        try {
+            db.beginTransaction();
             count = db.update(Constants.TABLE_NAME, values, "id=?", new String[] {id });
             db.setTransactionSuccessful();
 
@@ -50,7 +44,6 @@ public class UpdateProject extends AsyncTask<Project, Void, Boolean> {
             count = 0;
         }
         finally {
-            //db.close();
             db.endTransaction();
             db.close();
             helper.close();
@@ -61,6 +54,6 @@ public class UpdateProject extends AsyncTask<Project, Void, Boolean> {
     @Override
     protected void onPostExecute(Boolean aBoolean) {
         super.onPostExecute(aBoolean);
-        delegate.processFinish(aBoolean);
+        delegate.onExecute(aBoolean);
     }
 }

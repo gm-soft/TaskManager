@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import io.github.maximgorbatyuk.taskmanager.help.Constants;
+import io.github.maximgorbatyuk.taskmanager.helpers.Constants;
 
 public class TimerService extends Service {
 
