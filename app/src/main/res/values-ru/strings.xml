@@ -62,4 +62,6 @@
     <string name="work_week">Рабочая неделя</string>
     <string name="default_notification_value">Менеджер проектов</string>
     <string name="about_text">Менеджер проектов</string>
+    <string name="save">Save</string>
+    <string name="cancel">cancel</string>
 </resources>

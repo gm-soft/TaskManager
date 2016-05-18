@@ -1,207 +1,255 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-
-    tools:context="io.github.maximgorbatyuk.taskmanager.EditActivity"
-    android:gravity="top">
-
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+
         android:orientation="vertical"
-        android:id="@+id/linearLayout"
-        android:weightSum="1"
-        android:layout_above="@+id/editUpdateInsert">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewEditDescribe"
-        android:text="@string/edit_activity_create_desc"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        tools:context="io.github.maximgorbatyuk.taskmanager.EditActivity"
+        android:gravity="top"
+        android:id="@+id/menu_ll"
+        >
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/editID"
-            android:text="ID project"
-            android:visibility="invisible"
-            android:layout_alignTop="@+id/textViewEditDescribe"
-            android:layout_alignRight="@+id/textViewEditDescribe"
-            android:layout_alignEnd="@+id/textViewEditDescribe"
-            android:layout_gravity="right"
-
-            />
-    </RelativeLayout>
-
-        <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTaskTitle"
-
-        android:hint="@string/edit_title_hint"
-            android:inputType="textCapSentences|textAutoComplete|textAutoCorrect|text" />
-
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:id="@+id/editTaskBody"
-            android:hint="@string/edit_body_hint"
-            android:inputType="textCapSentences|textAutoComplete|textAutoCorrect|text|textMultiLine"
-
-            android:layout_weight="0.97"
-            android:gravity="top" />
-
-        <EditText
-            android:hint="@string/project_cost"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editProjectCost"
-            android:visibility="visible"
-            android:textAlignment="center"
-            />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/linearLayout"
+            android:weightSum="1">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:hint="@string/hours_of_execution"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/editExecuteHour"
-                android:visibility="visible"
-                android:textAlignment="center"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_toLeftOf="@+id/button2"
-                android:layout_toStartOf="@+id/button2" />
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/add_one_hour"
+            android:layout_height="wrap_content"
+            >
 
-                android:id="@+id/button2"
-                android:layout_alignTop="@+id/editExecuteHour"
-                android:layout_toLeftOf="@+id/button"
-                android:layout_toStartOf="@+id/button"
-                android:onClick="plusHourToEdit"
-                />
+            <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewEditDescribe"
+            android:text="@string/edit_activity_create_desc"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/millisecondsCount"
+                android:id="@+id/editID"
+                android:text="ID project"
                 android:visibility="invisible"
+                android:layout_alignTop="@+id/textViewEditDescribe"
+                android:layout_alignRight="@+id/textViewEditDescribe"
+                android:layout_alignEnd="@+id/textViewEditDescribe"
+                android:layout_gravity="right"
+
                 />
+        </RelativeLayout>
+
+            <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTaskTitle"
+
+            android:hint="@string/edit_title_hint"
+                android:inputType="textCapSentences|textAutoComplete|textAutoCorrect|text"
+                android:layout_marginTop="10dp"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/editTaskBody"
+                android:hint="@string/edit_body_hint"
+                android:inputType="textCapSentences|textAutoComplete|textImeMultiLine|textAutoCorrect|text|textMultiLine"
+
+                android:layout_weight="0.97"
+                android:layout_marginTop="30dp"
+                android:gravity="top"
+                android:enabled="true"
+                android:lines="3"
+                android:singleLine="false"
+                android:clickable="true"
+                android:editable="true" />
+
+            <!--View style="@style/Divider"/-->
+            <EditText
+                android:hint="@string/project_cost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editProjectCost"
+                android:visibility="visible"
+                android:textAlignment="center"
+                tools:targetApi="jelly_bean_mr1"
+                android:layout_marginTop="30dp"
+                android:inputType="number" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical"
+                >
+                <EditText
+                    android:hint="@string/hours_of_execution"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editExecuteHour"
+                    android:visibility="visible"
+                    android:textAlignment="center"
+                    tools:targetApi="jelly_bean_mr1"
+                    android:inputType="number" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:src="@drawable/ic_action_add_black"
+                        android:id="@+id/button2"
+                        android:onClick="plusHourToEdit"
+                        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/millisecondsCount"
+                        android:visibility="invisible"
+                        />
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:id="@+id/button"
+                        android:onClick="minusHourToEdit"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:src="@drawable/ic_action_remove"
+                        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+
+                        />
+
+                </RelativeLayout>
+                <View style="@style/Divider" />
+            </LinearLayout>
+
+
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="30dp"
+             >
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/edit_deadline_hint"
+                android:id="@+id/textViewDeadline"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:onClick="showDeadlineDialog"
+                android:textColor="@color/textMain"
+                android:padding="15dp"
+                android:layout_toLeftOf="@+id/editClearDeadline"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:clickable="false"
+                android:inputType="none"
+                android:focusable="false"
+                android:textIsSelectable="false"
+                android:singleLine="true" />
+             <ImageButton
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/editClearDeadline"
+                 android:src="@drawable/ic_action_clear"
+                 android:text="@string/edit_clear_deadline"
+                 android:textSize="10sp"
+
+                 android:layout_centerVertical="true"
+                 android:layout_alignParentRight="true"
+                 android:layout_alignParentEnd="true"
+                 android:onClick="clearDeadline"
+                 style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                 />
+         </RelativeLayout>
+
+
+
+            <Switch
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_is_done_hint"
+                android:id="@+id/switch1"
+                android:layout_marginTop="30dp"
+                />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/open_created_at"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editCreatedAt"
+                    android:visibility="invisible"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            >
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/minus_one_hour"
+                android:text="@string/create_task"
+                android:id="@+id/editUpdateInsert"
+                android:drawableLeft="@drawable/ic_action_save_dark"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                />
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_remove_task"
+                android:id="@+id/buttonRemove"
+                android:drawableLeft="@drawable/ic_action_clear"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:id="@+id/button"
-                android:onClick="minusHourToEdit"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
                 />
-
         </RelativeLayout>
 
 
-     <RelativeLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_marginTop="5dp"
-         >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/edit_deadline_hint"
-            android:id="@+id/textViewDeadline"
-            android:textSize="18sp"
-            android:gravity="center"
-            android:onClick="showDeadlineDialog"
-            android:textColor="@color/textMain"
-            android:background="@android:drawable/dialog_holo_light_frame"
-            android:padding="15dp"
-            android:layout_toLeftOf="@+id/editClearDeadline"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-         <Button
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:id="@+id/editClearDeadline"
-             android:text="@string/edit_clear_deadline"
-             android:textSize="10sp"
-             android:layout_centerVertical="true"
-             android:layout_alignParentRight="true"
-             android:layout_alignParentEnd="true"
-             android:onClick="clearDeadline"
-             />
-     </RelativeLayout>
 
 
 
-        <Switch
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/edit_is_done_hint"
-            android:id="@+id/switch1"
-            android:layout_marginTop="5dp"
-            />
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/open_created_at"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/editCreatedAt"
-                android:visibility="invisible"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
-        </RelativeLayout>
     </LinearLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/create_task"
-        android:id="@+id/editUpdateInsert"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_remove_task"
-        android:id="@+id/buttonRemove"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-
-
-
-
-
-</RelativeLayout>
+</ScrollView>

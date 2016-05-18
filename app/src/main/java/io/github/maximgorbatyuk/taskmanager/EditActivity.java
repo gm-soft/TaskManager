@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -100,6 +102,34 @@ public class EditActivity extends AppCompatActivity implements IExecuteResult{
         }
         //------------------------
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_edit, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if (id == R.id.action_save){
+            if (Objects.equals(ACTION, "update")){
+                updateTaskInDatabase(constructTask());
+            }
+
+            if (Objects.equals(ACTION, "create")){
+                insertTaskToDatabase(constructTask());
+            }
+        }
+
+        if (id == R.id.action_cancel){
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void showDeadlineDialog(View v){
