@@ -65,4 +65,12 @@
     <string name="work_hour">Work hours</string>
     <string name="work_week">Work week</string>
     <string name="default_notification_value">Project Manager</string>
+    <string name="about_text">Project manager\r\n
+
+        The application allows to calculate work efficiency and productivity. How? Just to count a time we are in process during which.\r\n\r\n
+        User should set a timer a the beginning of working and stop it at the end. So the time will be saved in local database and an efficiency will be calculated\r\n\r\n
+
+        It is open source project, so you may take a part in development. Just make a pull request to https://github.com/maximgorbatyuk/TaskManager
+
+    </string>
 </resources>

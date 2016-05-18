@@ -1,7 +1,9 @@
 package io.github.maximgorbatyuk.taskmanager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -13,7 +15,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import io.github.maximgorbatyuk.taskmanager.helpers.DateHelper;
-import io.github.maximgorbatyuk.taskmanager.services.NotificationHelper;
+import io.github.maximgorbatyuk.taskmanager.helpers.NotificationHelper;
 
 public class CounterActivity extends AppCompatActivity {
 
@@ -25,6 +27,7 @@ public class CounterActivity extends AppCompatActivity {
     private NotificationHelper notificationHelper;
     private DateHelper dateHelper = new DateHelper();
     //private Intent timerService;
+    private SharedPreferences preferences;
 
     private Button startOrStopButton;
 
@@ -42,6 +45,7 @@ public class CounterActivity extends AppCompatActivity {
         startOrStopButton = (Button) findViewById(R.id.startOrStop);
         StartOrPauseTimer(startOrStopButton);
         notificationHelper = new NotificationHelper(this);
+        this.preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         //timerService = new Intent(this, TimerService.class);
     }
@@ -167,8 +171,8 @@ public class CounterActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     ((TextView) findViewById(R.id.timerDisplay)).setText(dateHelper.getFormatDifference(difference));
-                    if (dateHelper.TimeCount(difference) % 10 == 0 && isActive) {
-                        notificationHelper.showText("Here is a difference = " + (difference / 1000));
+                    if (dateHelper.TimeCount(difference) % 10 == 0 && isActive && preferences.getBoolean("notifications", false)) {
+                        notificationHelper.showText("Your time is " + (difference / 1000) + " seconds");
                     }
                     }
                 });

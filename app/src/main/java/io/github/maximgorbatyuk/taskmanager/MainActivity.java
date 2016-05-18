@@ -4,7 +4,6 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -25,7 +24,7 @@ import io.github.maximgorbatyuk.taskmanager.database.Database;
 import io.github.maximgorbatyuk.taskmanager.database.IExecuteResult;
 import io.github.maximgorbatyuk.taskmanager.Essential.Project;
 import io.github.maximgorbatyuk.taskmanager.Essential.TaskAdapter;
-import io.github.maximgorbatyuk.taskmanager.services.NotificationHelper;
+import io.github.maximgorbatyuk.taskmanager.helpers.NotificationHelper;
 
 public class MainActivity extends AppCompatActivity implements IExecuteResult{
 
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements IExecuteResult{
 
 
         textView = (TextView) findViewById(R.id.textView);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
