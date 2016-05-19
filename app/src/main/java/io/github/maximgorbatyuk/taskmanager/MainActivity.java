@@ -42,6 +42,9 @@ public class MainActivity extends AppCompatActivity implements IExecuteResult{
 
 
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements IExecuteResult{
         registerForContextMenu(listView);
         // Берется список задач из базы по созданию активити
         getTasksList();
+
     }
 
 
@@ -99,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements IExecuteResult{
         }
 
         if (id == R.id.action_notification){
-            NotificationHelper helper = new NotificationHelper(getApplicationContext());
+            NotificationHelper helper = new NotificationHelper(getApplicationContext(), this.getClass());
             helper.showNotification();
             return true;
         }

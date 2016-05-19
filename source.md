@@ -36,6 +36,12 @@
 * [Урок](http://startandroid.ru/ru/uroki/vse-uroki-spiskom/81-urok-41-ispolzuem-layoutinflater-dlja-sozdanija-spiska.html) по Inflater
 * [Статья](https://guides.codepath.com/android/Using-the-App-ToolBar) про App ToolBar. Нужно почитать и изучать блее подробно. ПОка не применял на практике
 * [Вопрос](http://stackoverflow.com/questions/5976805/android-linearlayout-gradient-background) про добавление градиента в активити.
+* [Туториал](https://www.bignerdranch.com/blog/splash-screens-the-right-way/) о том, как сделать экран загрузки приложения (Сплэш экран)
+* [Вопрос](http://stackoverflow.com/questions/17357226/add-the-loading-screen-in-starting-of-the-android-application) на stackoverflow о сплэш экране
+* [Вопрос](http://stackoverflow.com/questions/12043671/notification-click-activity-already-open) о том, как открывать существующее активити вместо создания нового по тапу на уведомление
+* [Вопрос](http://stackoverflow.com/questions/2283444/android-image-button) о том, как настроить ImageView
+* [Сайт](https://design.google.com/icons/) с иконками Material Design
+* [Вопрос](http://stackoverflow.com/questions/10978038/restrict-edittext-to-single-line) о том, как сделать EditText кликабельным, но без ввода текста (Нужно было для установки deadline)
 
 ### Таймер
 * [Статья](http://developer.android.com/reference/java/util/Timer.html) про тайеры в Библии андроид-девелоперов

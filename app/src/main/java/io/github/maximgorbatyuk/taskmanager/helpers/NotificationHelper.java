@@ -19,18 +19,22 @@ public class NotificationHelper {
 
     private Context context;
     private Notification.Builder builder;
-    private Intent senderIntent;
     private Resources resources;
-    private Notification notification;
     private PendingIntent pendingIntent;
 
-    public NotificationHelper(Context context){
+    public NotificationHelper(Context context, Class<?> cls){
         this.context = context;
         builder = new Notification.Builder(context);
         resources  = context.getResources();
 
-        senderIntent = new Intent(context, MainActivity.class);
+        //senderIntent = new Intent(context, MainActivity.class);
+        Intent senderIntent = getIntent(context, cls);
         pendingIntent = PendingIntent.getActivity(context, 0, senderIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+    }
+
+    private Intent getIntent(Context context, Class<?> cls){
+        Intent result = new Intent(context, cls);
+        return result;
     }
 
     private void buildAndShow(){
@@ -39,7 +43,7 @@ public class NotificationHelper {
         builder.setContentIntent(pendingIntent)
                 .setSmallIcon(R.mipmap.ic_notification)
                 .setDefaults(Notification.DEFAULT_ALL);
-        notification = builder.build();
+        Notification notification = builder.build();
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         manager.notify(Constants.NOTIFY_ID, notification);
 

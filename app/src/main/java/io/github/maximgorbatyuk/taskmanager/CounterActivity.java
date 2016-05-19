@@ -9,6 +9,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Date;
 import java.util.Timer;
@@ -44,16 +45,25 @@ public class CounterActivity extends AppCompatActivity {
 
         startOrStopButton = (Button) findViewById(R.id.startOrStop);
         StartOrPauseTimer(startOrStopButton);
-        notificationHelper = new NotificationHelper(this);
+        notificationHelper = new NotificationHelper(this, this.getClass());
         this.preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         //timerService = new Intent(this, TimerService.class);
     }
 
     public void StartOrPauseTimer(View view) {
-        if (isTimerActive) stopTimer();
-        else {
+        Button button = (Button) findViewById(R.id.startOrStop);
+        if (isTimerActive) {
 
+            if (button != null) {
+                //button.setCompoundDrawables(getResources().getDrawable (R.drawable.ic_action_play), null, null, null);
+            }
+            stopTimer();
+        }
+        else {
+            if (button != null) {
+                //button.setCompoundDrawables(getResources().getDrawable (R.drawable.ic_action_pause), null, null, null);
+            }
             startTimer();
 
         }
@@ -102,6 +112,7 @@ public class CounterActivity extends AppCompatActivity {
             /*registerReceiver(receiver, new IntentFilter(Constants.BROADCAST_TIMER));
             startService(timerService);*/
         startOrStopButton.setText(getString(R.string.button_pause_timer));
+        showNotificaton(getString(R.string.resume));
     }
 
     private void stopTimer(){
@@ -119,19 +130,29 @@ public class CounterActivity extends AppCompatActivity {
             stopService(timerService);*/
         counter = null;
         timer = null;
+        showNotificaton(getString(R.string.paused));
     }
 
 
     public void ResetTimerClick(View view) {
         difference = 0;
-        if (isTimerActive)  counter.setData(new Date(), 0);
-        else  ( (TextView) findViewById(R.id.timerDisplay) ).setText(new DateHelper().getFormatDifference(difference));
+        if (isTimerActive)  {
+            counter.setData(new Date(), 0);
+            showNotificaton(getString(R.string.reset));
+        }
+        else {
+            ( (TextView) findViewById(R.id.timerDisplay) ).setText(new DateHelper().getFormatDifference(difference));
+        }
     }
 
     public void StopTimerClick(View view) {
         stopTimer();
         sendDifferenceToParent();
         finish();
+    }
+
+    private void showNotificaton(String text){
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 
     /*private BroadcastReceiver receiver = new BroadcastReceiver() {

@@ -5,7 +5,7 @@
     <string name="no_items">No projects in list</string>
     <string name="list_item_checkbox">Done</string>
     <string name="list_item_deadline">Deadline</string>
-    <string name="create_task">Create a project</string>
+    <string name="create_task">Create</string>
     <string name="edit_task">Edit a project</string>
     <string name="action_about">About</string>
     <string name="action_only_undone">Uncompleted projects</string>
@@ -17,15 +17,15 @@
     <string name="edit_deadline_hint">Deadline</string>
     <string name="button_create_task">Create project</string>
     <string name="button_pick_datetime">Tap to set deadline</string>
-    <string name="button_remove_task">Remove the project</string>
+    <string name="button_remove_task">Remove</string>
     <string name="button_update_task">Save</string>
     <string name="edit_is_done_hint">Is the project completed?</string>
     <string name="error_not_created_updated">Ups, the project has not been saved</string>
     <string name="error_null_result">No projects in database</string>
     <string name="error_empty_edits">A project could not be created without data</string>
     <string name="fill_no_title">No label</string>
-    <string name="insert_success">Project has been created</string>
-    <string name="update_success">Task has been updated</string>
+    <string name="insert_success">Changes has been saved</string>
+    <string name="update_success">Changes has been saved</string>
     <string name="context_done">Completed</string>
     <string name="context_remove">Remove the project</string>
     <string name="context_update">Edit the project</string>
@@ -53,7 +53,7 @@
     <string name="add_hours">Add hours</string>
     <string name="add_one_hour" translatable="false">+</string>
     <string name="minus_one_hour" translatable="false">-</string>
-    <string name="hours_of_execution">Hours of execution</string>
+    <string name="hours_of_execution">Executed (hours)</string>
     <string name="timer">Timer</string>
     <string name="in_process">In progress</string>
     <string name="button_pause_timer">Pause</string>
@@ -67,10 +67,21 @@
     <string name="default_notification_value">Project Manager</string>
     <string name="about_text">Project manager\r\n
 
-        The application allows to calculate work efficiency and productivity. How? Just to count a time we are in process during which.\r\n\r\n
-        User should set a timer a the beginning of working and stop it at the end. So the time will be saved in local database and an efficiency will be calculated\r\n\r\n
+        The application allows to calculate work efficiency and productivity. How? Just to count a time we are in process during which.\n\n
+        User should set a timer a the beginning of working and stop it at the end.
+        So the time will be saved in local database and an efficiency will be calculated\n\n
 
-        It is open source project, so you may take a part in development. Just make a pull request to https://github.com/maximgorbatyuk/TaskManager
+        It is open source project, so you may take a part in development. Just make a pull request
 
     </string>
+    <string name="save">Save</string>
+    <string name="cancel">cancel</string>
+    <string name="about_links">
+        Source code is available on <a href='https://github.com/maximgorbatyuk/TaskManager'>GitHub</a>
+    </string>
+    <string name="view_sourcecode">Sourcecode</string>
+    <string name="bugreport">bugreport</string>
+    <string name="resume">Resume</string>
+    <string name="paused">Timer paused</string>
+    <string name="reset">Reset</string>
 </resources>
