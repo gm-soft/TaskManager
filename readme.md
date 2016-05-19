@@ -5,6 +5,8 @@
 
 Прежнее описание проекта доступно [здесь](https://github.com/maximgorbatyuk/TaskManager/blob/master/olddescription.md). 
 
+Скачать приложение можно по [ссылке](https://github.com/maximgorbatyuk/TaskManager/blob/master/application.apk?raw=true).
+
 ## Use Cases
 1. Подсчет времени занятости проектом по запуску секундомера
 2. Просмотр статистики эффективности затраченного времени

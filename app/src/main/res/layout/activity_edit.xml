@@ -99,20 +99,23 @@
                 android:layout_marginTop="30dp"
                 android:orientation="vertical"
                 >
-                <EditText
-                    android:hint="@string/hours_of_execution"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editExecuteHour"
-                    android:visibility="visible"
-                    android:textAlignment="center"
-                    tools:targetApi="jelly_bean_mr1"
-                    android:inputType="number" />
                 <RelativeLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     >
+                    <EditText
+                        android:hint="@string/hours_of_execution"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editExecuteHour"
+                        android:visibility="visible"
+                        android:textAlignment="center"
+                        tools:targetApi="jelly_bean_mr1"
+                        android:inputType="number"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true" />
+
                     <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -121,6 +124,7 @@
                         android:id="@+id/button2"
                         android:onClick="plusHourToEdit"
                         style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                        android:background="@color/lightAccentBackground"
                         />
                     <TextView
                         android:layout_width="wrap_content"
@@ -134,13 +138,13 @@
                         android:text=""
                         android:id="@+id/button"
                         android:onClick="minusHourToEdit"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true"
                         android:src="@drawable/ic_action_remove"
                         style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                        android:background="@color/lightAccentBackground"
 
-                        />
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
 
                 </RelativeLayout>
                 <View style="@style/Divider" />
@@ -177,7 +181,7 @@
                  android:src="@drawable/ic_action_clear"
                  android:text="@string/edit_clear_deadline"
                  android:textSize="10sp"
-
+                 android:background="@color/lightAccentBackground"
                  android:layout_centerVertical="true"
                  android:layout_alignParentRight="true"
                  android:layout_alignParentEnd="true"

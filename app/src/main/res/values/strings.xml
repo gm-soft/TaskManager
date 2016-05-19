@@ -53,7 +53,7 @@
     <string name="add_hours">Add hours</string>
     <string name="add_one_hour" translatable="false">+</string>
     <string name="minus_one_hour" translatable="false">-</string>
-    <string name="hours_of_execution">Hours of execution</string>
+    <string name="hours_of_execution">Executed (hours)</string>
     <string name="timer">Timer</string>
     <string name="in_process">In progress</string>
     <string name="button_pause_timer">Pause</string>
@@ -67,12 +67,21 @@
     <string name="default_notification_value">Project Manager</string>
     <string name="about_text">Project manager\r\n
 
-        The application allows to calculate work efficiency and productivity. How? Just to count a time we are in process during which.\r\n\r\n
-        User should set a timer a the beginning of working and stop it at the end. So the time will be saved in local database and an efficiency will be calculated\r\n\r\n
+        The application allows to calculate work efficiency and productivity. How? Just to count a time we are in process during which.\n\n
+        User should set a timer a the beginning of working and stop it at the end.
+        So the time will be saved in local database and an efficiency will be calculated\n\n
 
-        It is open source project, so you may take a part in development. Just make a pull request to https://github.com/maximgorbatyuk/TaskManager
+        It is open source project, so you may take a part in development. Just make a pull request
 
     </string>
     <string name="save">Save</string>
     <string name="cancel">cancel</string>
+    <string name="about_links">
+        Source code is available on <a href='https://github.com/maximgorbatyuk/TaskManager'>GitHub</a>
+    </string>
+    <string name="view_sourcecode">Sourcecode</string>
+    <string name="bugreport">bugreport</string>
+    <string name="resume">Resume</string>
+    <string name="paused">Timer paused</string>
+    <string name="reset">Reset</string>
 </resources>

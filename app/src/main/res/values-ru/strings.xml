@@ -64,4 +64,10 @@
     <string name="about_text">Менеджер проектов</string>
     <string name="save">Save</string>
     <string name="cancel">cancel</string>
+    <string name="about_links">links</string>
+    <string name="view_sourcecode">View sourcecode</string>
+    <string name="bugreport">bugreport</string>
+    <string name="resume">Resume</string>
+    <string name="paused">Timer paused</string>
+    <string name="reset">Reset</string>
 </resources>
