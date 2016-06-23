@@ -1,7 +1,6 @@
 package io.github.maximgorbatyuk.taskmanager.database;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -15,12 +14,12 @@ import io.github.maximgorbatyuk.taskmanager.helpers.DateHelper;
  */
 class UpdateProject extends AsyncTask<Project, Void, Boolean> {
 
-    private IExecuteResult delegate;
+    private IDatabaseExecute delegate;
     private DBHelper helper;
     private DateHelper dateHelper = new DateHelper();
     //-------------------
 
-    public UpdateProject(DBHelper helper, IExecuteResult delegate){
+    public UpdateProject(DBHelper helper, IDatabaseExecute delegate){
         this.delegate = delegate;
         this.helper = helper;
     }
@@ -54,6 +53,6 @@ class UpdateProject extends AsyncTask<Project, Void, Boolean> {
     @Override
     protected void onPostExecute(Boolean aBoolean) {
         super.onPostExecute(aBoolean);
-        delegate.onExecute(aBoolean);
+        delegate.onUpdatedSuccess(aBoolean);
     }
 }

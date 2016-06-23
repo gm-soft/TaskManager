@@ -31,23 +31,23 @@ public class Database {
         return values;
     }
 
-    public void createProject(Project project, IExecuteResult delegate){
+    public void createProject(Project project, IDatabaseExecute delegate){
         new CreateProject(helper, delegate).execute(project);
     }
 
-    public void destroyProject(int id, IExecuteResult delegate){
+    public void destroyProject(int id, IDatabaseExecute delegate){
         new DestroyProject(helper, delegate).execute(id);
     }
 
-    public void getProject(String[] args, IExecuteResult delegate){
+    public void getProject(String[] args, IDatabaseExecute delegate){
         new ReadProject(helper, delegate).execute(args);
     }
 
-    public void getListOfProjects(IExecuteResult delegate){
+    public void getListOfProjects(IDatabaseExecute delegate){
         new GetListOfProjects(helper, delegate).execute();
     }
 
-    public void updateProject(Project project, IExecuteResult delegate){
+    public void updateProject(Project project, IDatabaseExecute delegate){
         new UpdateProject(helper, delegate).execute(project);
     }
 

@@ -4,7 +4,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import io.github.maximgorbatyuk.taskmanager.Essential.Project;
 import io.github.maximgorbatyuk.taskmanager.helpers.Constants;
 
 /**
@@ -13,9 +12,9 @@ import io.github.maximgorbatyuk.taskmanager.helpers.Constants;
  class DestroyProject extends AsyncTask<Integer, Void, Boolean> {
 
     private DBHelper helper;
-    private IExecuteResult delegate;
+    private IDatabaseExecute delegate;
 
-    DestroyProject(DBHelper helper, IExecuteResult delegate){
+    DestroyProject(DBHelper helper, IDatabaseExecute delegate){
         this.helper = helper;
         this.delegate = delegate;
     }
@@ -45,6 +44,6 @@ import io.github.maximgorbatyuk.taskmanager.helpers.Constants;
     @Override
     protected void onPostExecute(Boolean aBoolean) {
         super.onPostExecute(aBoolean);
-        delegate.onExecute(aBoolean);
+        delegate.onUpdatedSuccess(aBoolean);
     }
 }

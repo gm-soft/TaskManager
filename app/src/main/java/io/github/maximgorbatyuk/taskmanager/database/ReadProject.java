@@ -18,10 +18,10 @@ import io.github.maximgorbatyuk.taskmanager.helpers.DateHelper;
 class ReadProject extends AsyncTask<String, Void, List<Project>> {
 
     private DBHelper helper;
-    private IExecuteResult delegate;
+    private IDatabaseExecute delegate;
     private DateHelper dateHelper;
 
-    ReadProject(DBHelper helper, IExecuteResult delegate){
+    ReadProject(DBHelper helper, IDatabaseExecute delegate){
         this.helper = helper;
         this.delegate = delegate;
         dateHelper = new DateHelper();
@@ -87,6 +87,6 @@ class ReadProject extends AsyncTask<String, Void, List<Project>> {
     @Override
     protected void onPostExecute(List<Project> project) {
         super.onPostExecute(project);
-        delegate.onExecute(project);
+        delegate.onUpdatedSuccess(project);
     }
 }

@@ -4,7 +4,6 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,15 +17,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
-import java.util.Objects;
 
 import io.github.maximgorbatyuk.taskmanager.database.Database;
-import io.github.maximgorbatyuk.taskmanager.database.IExecuteResult;
+import io.github.maximgorbatyuk.taskmanager.database.IDatabaseExecute;
 import io.github.maximgorbatyuk.taskmanager.Essential.Project;
 import io.github.maximgorbatyuk.taskmanager.Essential.TaskAdapter;
 import io.github.maximgorbatyuk.taskmanager.helpers.NotificationHelper;
 
-public class MainActivity extends AppCompatActivity implements IExecuteResult{
+public class MainActivity extends AppCompatActivity implements IDatabaseExecute {
 
     private boolean SHOW_ALL = true;
     private ListView listView;
@@ -120,30 +118,30 @@ public class MainActivity extends AppCompatActivity implements IExecuteResult{
         Snackbar.make(view, text, Snackbar.LENGTH_LONG).show();
     }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
+
     private void openIntent(String action, int id){
         Intent intent = null;
-        if (Objects.equals(action, "open")){
+        if (action == "open"){
             intent = new Intent(this, OpenActivity.class);
             intent.putExtra("action", "open");
             intent.putExtra("id", "" + id);
 
         }
-        if (Objects.equals(action, "create")){
+        if (action == "create"){
             intent = new Intent(this, EditActivity.class);
             intent.putExtra("action", "create");
 
         }
-        if (Objects.equals(action, "update")){
+        if (action == "update"){
             intent = new Intent(this, EditActivity.class);
             intent.putExtra("action", "update");
             intent.putExtra("id", "" + id);
         }
-        if (Objects.equals(action, "settings")){
+        if (action == "settings"){
             intent = new Intent(this, SettingsActivity.class);
 
         }
-        if (Objects.equals(action, "about")){
+        if (action == "about"){
             intent = new Intent(this, AboutActivity.class);
 
         }
@@ -183,10 +181,10 @@ public class MainActivity extends AppCompatActivity implements IExecuteResult{
         if (data != null) {
             String action = data.getStringExtra("action");
             if (resultCode == RESULT_OK) {
-                if (Objects.equals(action, "create"))
+                if (action == "create")
                     showNotification(getString(R.string.insert_success));
 
-                if (Objects.equals(action, "update"))
+                if (action == "update")
                     showNotification(getString(R.string.update_success));
 
                 getTasksList();
@@ -228,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements IExecuteResult{
     }
 
     @Override
-    public void onExecute(Boolean result) {
+    public void onUpdatedSuccess(Boolean result) {
         if (result) {
             showNotification(getString(R.string.remove_success));
             getTasksList();
@@ -238,7 +236,7 @@ public class MainActivity extends AppCompatActivity implements IExecuteResult{
     }
 
     @Override
-    public void onExecute(List<Project> list) {
+    public void onUpdatedSuccess(List<Project> list) {
         fillListByTasks(list);
     }
 }

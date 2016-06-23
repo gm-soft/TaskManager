@@ -14,9 +14,9 @@ import io.github.maximgorbatyuk.taskmanager.helpers.Constants;
 class CreateProject extends AsyncTask<Project, Void, Boolean> {
 
     private DBHelper helper;
-    private IExecuteResult delegate;
+    private IDatabaseExecute delegate;
 
-    CreateProject(DBHelper helper, IExecuteResult delegate){
+    CreateProject(DBHelper helper, IDatabaseExecute delegate){
         this.helper = helper;
         this.delegate = delegate;
     }
@@ -50,6 +50,6 @@ class CreateProject extends AsyncTask<Project, Void, Boolean> {
     @Override
     protected void onPostExecute(Boolean aBoolean) {
         super.onPostExecute(aBoolean);
-        delegate.onExecute(aBoolean);
+        delegate.onUpdatedSuccess(aBoolean);
     }
 }

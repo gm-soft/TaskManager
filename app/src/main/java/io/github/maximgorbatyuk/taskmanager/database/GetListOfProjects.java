@@ -18,10 +18,10 @@ import io.github.maximgorbatyuk.taskmanager.helpers.DateHelper;
 class GetListOfProjects extends AsyncTask<String, Void, List<Project>> {
 
     private DBHelper helper;
-    private IExecuteResult delegate;
+    private IDatabaseExecute delegate;
     private DateHelper dateHelper;
 
-    GetListOfProjects(DBHelper helper, IExecuteResult delegate){
+    GetListOfProjects(DBHelper helper, IDatabaseExecute delegate){
         this.helper = helper;
         this.delegate = delegate;
         dateHelper = new DateHelper();
@@ -71,6 +71,6 @@ class GetListOfProjects extends AsyncTask<String, Void, List<Project>> {
     @Override
     protected void onPostExecute(List<Project> projects) {
         super.onPostExecute(projects);
-        delegate.onExecute(projects);
+        delegate.onUpdatedSuccess(projects);
     }
 }

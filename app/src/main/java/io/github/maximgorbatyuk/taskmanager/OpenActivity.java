@@ -8,6 +8,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,12 +17,12 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.github.maximgorbatyuk.taskmanager.database.Database;
-import io.github.maximgorbatyuk.taskmanager.database.IExecuteResult;
+import io.github.maximgorbatyuk.taskmanager.database.IDatabaseExecute;
 import io.github.maximgorbatyuk.taskmanager.helpers.DateHelper;
 import io.github.maximgorbatyuk.taskmanager.helpers.PreferencesHelper;
 import io.github.maximgorbatyuk.taskmanager.Essential.Project;
 
-public class OpenActivity extends AppCompatActivity implements IExecuteResult {
+public class OpenActivity extends AppCompatActivity implements IDatabaseExecute {
 
     private String PROJECT_ID = "";
     private Project project;
@@ -42,6 +43,14 @@ public class OpenActivity extends AppCompatActivity implements IExecuteResult {
             PROJECT_ID = data.getStringExtra("id");
             getProject(PROJECT_ID);
         }
+
+        /*
+        String drawableName = "res/asset/open_image.png";
+        ImageView iw= (ImageView)findViewById(R.id.image);
+        int resID = getResources().getIdentifier(drawableName, "drawable",  getPackageName());
+        iw.setImageResource(resID);
+        */
+
     }
 
     private void fillProject(Project project){
@@ -135,13 +144,13 @@ public class OpenActivity extends AppCompatActivity implements IExecuteResult {
     }
 
     @Override
-    public void onExecute(Boolean result) {
+    public void onUpdatedSuccess(Boolean result) {
         showNotification(getString(result ? R.string.update_success : R.string.error_not_created_updated));
         if (result && !PROJECT_ID.isEmpty()) getProject(PROJECT_ID);
     }
 
     @Override
-    public void onExecute(List<Project> list) {
+    public void onUpdatedSuccess(List<Project> list) {
         if (list.size() > 0) {
             project = list.get(0);
             fillProject(project);

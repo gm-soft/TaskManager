@@ -19,7 +19,7 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import io.github.maximgorbatyuk.taskmanager.database.Database;
-import io.github.maximgorbatyuk.taskmanager.database.IExecuteResult;
+import io.github.maximgorbatyuk.taskmanager.database.IDatabaseExecute;
 import io.github.maximgorbatyuk.taskmanager.helpers.DateHelper;
 import io.github.maximgorbatyuk.taskmanager.helpers.DatePickerFragment;
 import io.github.maximgorbatyuk.taskmanager.helpers.DateTimeInterface;
@@ -27,23 +27,13 @@ import io.github.maximgorbatyuk.taskmanager.Essential.Project;
 import io.github.maximgorbatyuk.taskmanager.helpers.TimePickerFragment;
 
 
-public class EditActivity extends AppCompatActivity implements IExecuteResult{
+public class EditActivity extends AppCompatActivity implements IDatabaseExecute {
 
-    private EditText editTitle;
-    private EditText editBody;
-    private TextView textDeadline;
+    private EditText editTitle, editBody, projectCost, projectHours;
+    private TextView textDeadline, createdAt, projectId, millisecondsCount;
     private Switch switchDone;
-    private TextView createdAt;
-    private TextView projectId;
-    private EditText projectCost;
-    private EditText projectHours;
-    private TextView millisecondsCount;
-    //-
-    private Button insertUpdateButton;
-    private Button removeTask;
     //--
-    private String deadline = "";
-    private String ACTION = "";
+    private String deadline = "", ACTION = "";
 
     private DateHelper dateHelper = new DateHelper();
     private Database database;
@@ -68,8 +58,8 @@ public class EditActivity extends AppCompatActivity implements IExecuteResult{
 
         TextView desc = (TextView) findViewById(R.id.textViewEditDescribe);
 
-        insertUpdateButton = (Button) findViewById(R.id.editUpdateInsert);
-        removeTask      = (Button)   findViewById(R.id.buttonRemove);
+        Button insertUpdateButton = (Button) findViewById(R.id.editUpdateInsert);
+        Button removeTask = (Button) findViewById(R.id.buttonRemove);
 
         database = new Database(this);
 
@@ -118,15 +108,14 @@ public class EditActivity extends AppCompatActivity implements IExecuteResult{
         if (id == R.id.action_save){
             if (Objects.equals(ACTION, "update")){
                 updateTaskInDatabase(constructTask());
-            }
-
+            } else
             if (Objects.equals(ACTION, "create")){
                 insertTaskToDatabase(constructTask());
             }
         }
 
         if (id == R.id.action_cancel){
-
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
@@ -269,7 +258,7 @@ public class EditActivity extends AppCompatActivity implements IExecuteResult{
     }
 
     @Override
-    public void onExecute(Boolean result) {
+    public void onUpdatedSuccess(Boolean result) {
         if (result) {
             if (ACTION == "update")
                 createResultIntent("update");
@@ -281,7 +270,7 @@ public class EditActivity extends AppCompatActivity implements IExecuteResult{
     }
 
     @Override
-    public void onExecute(List<Project> list) {
+    public void onUpdatedSuccess(List<Project> list) {
         if (list.size() > 0)
             fillEdits(list.get(0));
         else

@@ -192,8 +192,9 @@ public class CounterActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     ((TextView) findViewById(R.id.timerDisplay)).setText(dateHelper.getFormatDifference(difference));
-                    if (dateHelper.TimeCount(difference) % 10 == 0 && isActive && preferences.getBoolean("notifications", false)) {
-                        notificationHelper.showText("Your time is " + (difference / 1000) + " seconds");
+                    long seconds = dateHelper.TimeCount(difference);
+                    if (seconds != 0 && seconds % 10 == 0 && isActive && preferences.getBoolean("notifications", false)) {
+                        notificationHelper.showText("Your time is " + seconds + " seconds");
                     }
                     }
                 });
